@@ -1,0 +1,91 @@
+﻿@model CuMaster.BusinessLibrary.ViewModels.CurrencyConversionViewModel
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="collapse-bar col-md-offset-1 col-md-10 bg-info text-left" style="min-height:25px;" id="converterCollapse" data-toggle="collapse">
+            <div class="text-left col-md-9 col-sm-7 col-xs-7">
+                <label style="color:#eee;">Conversion Calculator</label>
+            </div>
+            <div class="text-right pull-right col-md-1" style="font-size:18px; color:#eee;">
+                <span id="converterCollapseToggle" class="glyphicon glyphicon-collapse-down"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="collapse-pane col-md-offset-1 col-md-10 col-sm-12 collapse show" id="converterCollapsePane">
+            <div class="text-left pull-left col-md-8" style="font-size:18px;">
+                <label>1</label>&nbsp;
+                <label id="currencyFromDisplayName">@Html.DisplayFor(modelItem => Model.CurrencyFrom.Name)</label>
+                &nbsp;=&nbsp;
+                <label id="currencyToRate">@Html.DisplayFor(modelItem => Model.FromRate)</label>&nbsp;
+                <label id="currencyToDisplayName">@Html.DisplayFor(modelItem => Model.CurrencyTo.Name)</label>
+                @Html.HiddenFor(modelItem => Model.FromRate, new { @id = "hFromRate" })
+            </div>
+            <div class="text-right pull-right col-md-4">
+                Rate Last Updated: <label id="dateLastUpdated">@Html.DisplayFor(modelItem => Model.CurrencyFromLastUpdatedString)</label>
+            </div>
+            <br/><br/>
+            <form>
+                    <div class="pull-left col-md-8 col-sm-4">
+                        <div class="form-group col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-addon" id="currencyFromSymbol">@Html.Raw(Model.CurrencyFrom.HTMLSymbol)</div>
+                                <input type="number" min="0" step="any" class="form-control" id="currencyFromValue" value=@Model.ValueFrom />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            @Html.DropDownListFor(m => m.CurrencyFrom.ID, Model.Currencies, new {@id = "fromCurrency", @class="form-control", @name="currencyDropdown"}) 
+                            @*<select class="form-control" id="fromCurrency" name="currencyDropdown"></select>*@
+                        </div>
+                    </div>
+                  
+                    <div class="pull-left col-md-8 col-sm-4">
+                        <div class="form-group col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-addon" id="currencyToSymbol">@Html.Raw(Model.CurrencyTo.HTMLSymbol)</div>
+                                <input type="number" class="form-control" min="0" step="any" id="currencyToValue" value=@Model.ValueTo />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.DropDownListFor(m => m.CurrencyTo.ID, Model.CurrenciesTo, new { @id = "toCurrency", @class = "form-control", @name = "currencyDropdown"})
+                            @*<select class="form-control" id="toCurrency" name="currencyDropdown"></select>*@
+                        </div>
+                    </div>
+                    <div class="form-group text-right pull-right col-md-2" style="padding: 0px 2px 4px 2px;">
+                        <button type="button" id="btnSaveConversion" class="btn btn-info" data-toggle="modal" data-target="#modalSaveEntry">Save Conversion</button>
+                     </div>
+                    <div class="form-group text-right pull-right col-md-2" style="padding:0px 2px 2px 2px;">
+                        <button type="reset" id="btnClearConversion" class="btn btn-default">Clear Conversion</button>
+                    </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Save Model for conversions-->
+<div class="modal fade" id="modalSaveEntry" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Save Conversion Entry</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="font-size:20px;" class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtEntryName">Entry Name (Optional): </label>
+                        <input type="text" maxlength="100" id="txtEntryName" />
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveEntry" class="btn btn-primary">Save Entry</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCloseEntry">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

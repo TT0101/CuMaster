@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme-cumaster.css" rel="stylesheet" />*@
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @*<div class="wrapper">*@
+        <header>
+            @*Navigation bar*@
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="fa fa-bars" style="color:#eee;"></span>
+                    </button>
+                    <a class="navbar-brand" style="color:#eee;" href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" style="color:#eee;">
+                        <li class="nav-item"><a class="navbar-link" href="@Url.Action("ConversionCalculator", "Home")">Convert and Track Currency</a></li>
+                        <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "EmailAlerts")" data-toggle="modal" data-target="#modalEmailAlert">Create an Email Alert</a></li>
+                        <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "BusinessFinder")">Find an Exchange</a></li>
+                        <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "ExchangeCostCalculator")">Exchange Cost Calculator</a></li>
+                        <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "Help")">Help</a></li>
+                    </ul>
+                    <form class="form-inline my-2 text-right">
+                        @*<span class="glyphicon glyphicon-user"></span>*@
+                        <i class="fa fa-user-o" style="color:#eee;" aria-hidden="true"></i>
+                        <a class="nav-link hidden" href="#">My Account</a>
+                        <button class="nav-link button btn-link" style="color:#eee;">Sign In/Register</button>
+                    </form>
+                </div>
+            </div>
+            @*End navigation bar*@
+            <br />
+
+            @*business header*@
+            <div class="container-fluid" style="background-color:#e9eef4;">
+                <h2 class="text-primary" style="font-weight:bold;">CuMASTER</h2>
+                <span class="" style="font-size:14pt;color:#333;">Convert it, Track it, Find Out Where to Use it</span>
+                @*<div style="font-size:16pt;">Currency Conversion and Tracking System</div>*@
+                <br />
+            </div>
+            @*end business header*@
+        </header>
+        <br />
+
+        <div class="container center-block">
+            <div class="alert alert-danger fade in hidden" role="alert" id="errorAlert">
+                <button type="button" class="close" onclick="hideError()" aria-label="Close"><span>&times;</span></button>
+                &nbsp;&nbsp;<span class=""></span>&nbsp;An error occured.  The error is:&nbsp;<label id="errorMessage"></label>
+            </div>
+            <br />
+        </div>
+        <div class="container-fluid body-content">
+            @RenderBody()
+            @Html.Action("Index", "EmailAlertRegistration");
+        </div>
+        <br />
+
+        <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.validate.globalize.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.bootstrap.js"></script>
+        <script type="text/javascript" src="~/Scripts/Pages/CuMasterCommon.js"></script>
+        <script type="text/javascript" src="~/Scripts/ValidationOverride.js"></script>
+        <script src="@Url.Content("~/Scripts/mvcfoolproof.unobtrusive.js")" type="text/javascript"></script>
+        <script type="text/javascript" src=@Url.Content("~/Scripts/Pages/EmailAlertRegistration.js")></script>
+        @RenderSection("JavaScript", false)
+
+    @*</div>*@
+
+    <footer class="foot footer navbar-fixed-bottom">
+        <br/>
+        <div class="container-fluid">
+            <div class="col-md-4 text-center">
+                &copy;2017, CIS9590 Team 3
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#">About</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+        <br/>
+    </footer>
+</body>
+
+</html>

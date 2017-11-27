@@ -1,0 +1,13 @@
+﻿@model CuMaster.Models.ErrorModel
+
+@{
+    ViewBag.Title = "ErrorView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="alert alert-danger">
+    <span class="glyphicon glyphicon-fire"></span>&nbsp;Oh no, something happened! Don't worry, we've recieved this error too, and will fix it shortly.
+    <br/>
+    Error:&nbsp;@Model.ErrorMessage
+</div>
+

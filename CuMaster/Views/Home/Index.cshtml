@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "CuMaster";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Action("Index", "ConversionCalculator")
+<br/>
+@Html.Action("Index", "ConversionTracker")
+
+@section JavaScript
+{
+    <script type="text/javascript" src=@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")></script>
+    <script type="text/javascript" src=@Url.Content("~/Scripts/Pages/ConversionCalculator.js")></script>
+    <script type="text/javascript" src=@Url.Content("~/Scripts/Pages/ConversionTracker.js")></script>
+    
+
+}
