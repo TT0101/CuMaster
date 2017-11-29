@@ -60,7 +60,7 @@ function saveAlert()
     {
         var data = CreateDataViewObject();
 
-        ajaxCallPost("/CuMaster/EmailAlertRegistration", "SaveAlert", data, onAlertSave);
+        ajaxCallPost("EmailAlertRegistration", "SaveAlert", data, onAlertSave);
     }
 
 }
@@ -74,7 +74,7 @@ function deleteAlerts()
             var data = new Object();
             data.Email = $("#txtEmail").val();
 
-            ajaxCallPost("/CuMaster/EmailAlertRegistration", "DeleteAlerts", data, onDeleteComplete);
+            ajaxCallPost("EmailAlertRegistration", "DeleteAlerts", data, onDeleteComplete);
         }
 
     }

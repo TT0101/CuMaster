@@ -18,25 +18,22 @@
     }
 }
 
-
-function ajaxCallPost(location, callFunction, data, onSuccess)
+//note for the following siteRoot must be defined in the layout as embedded js to get the site name.  Anything beyond the root must be defined as a path (so, 'Home' but 'Shared/SubFolder/mycontroller')
+function ajaxCallPost(controller, callFunction, data, onSuccess)
 {
-    if (location === null)
-        location = $(location).attr('pathname');
-
     $.ajax(
         {
             dataType: "json",
             type: "POST",
             data: data,
-            url: location + "/" + callFunction,
+            url: siteRoot + "/" + controller + "/" + callFunction,
             success: onSuccess,
             failure: onError
         });
 
 }
 
-function ajaxCallGet(location, callFunction, data, onSuccess)
+function ajaxCallGet(controller, callFunction, data, onSuccess)
 {
     if (location === null)
         location = $(location).attr('pathname');
@@ -46,7 +43,7 @@ function ajaxCallGet(location, callFunction, data, onSuccess)
             dataType: "json",
             type: "GET",
             data: data,
-            url: location + "/" + callFunction,
+            url: siteRoot + "/" + controller + "/" + callFunction,
             success: onSuccess,
             failure: onError
         });

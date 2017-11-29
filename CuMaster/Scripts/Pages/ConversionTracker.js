@@ -61,7 +61,7 @@ function initTrackerTable()
                         dataType: "json",
                         type: "POST",
                         data: sendData,
-                        url: "/CuMaster/ConversionTracker/GetTrackerEntries",
+                        url: siteRoot + "/ConversionTracker/GetTrackerEntries",
                         success: function (msg)
                         {
                             if (msg != undefined)
@@ -103,7 +103,7 @@ function initOnRowClick()
             var obj = new Object();
             obj.entryID = data.EntryID;
             obj.rowID = table.cell(this).index().row;
-            ajaxCallPost("/CuMaster/ConversionTracker", "SaveAutoUpdateChange", obj, showChangeSuccessMessage);
+            ajaxCallPost("ConversionTracker", "SaveAutoUpdateChange", obj, showChangeSuccessMessage);
         }
         else if($(this)[0].cellIndex < 6)
         {
@@ -130,12 +130,12 @@ function deleteEntry(entryID)
 
     obj.rowID = 0; //not needed
 
-    ajaxCallPost("/CuMaster/ConversionTracker", "DeleteEntry", obj, showChangeSuccessMessage);
+    ajaxCallPost("ConversionTracker", "DeleteEntry", obj, showChangeSuccessMessage);
 }
 
 function deleteAllEntries()
 {
-    ajaxCallPost("/CuMaster/ConversionTracker", "DeleteAllEntries", "{}", showChangeSuccessMessage);
+    ajaxCallPost("ConversionTracker", "DeleteAllEntries", "{}", showChangeSuccessMessage);
 }
 
 function compareSelectedEntries()

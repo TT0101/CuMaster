@@ -29,7 +29,7 @@
     $("#btnClearConversion").click(function ()
     {
         var data = PopulateResponseObject();
-        ajaxCallPost("/CuMaster/ConversionCalculator", "ResetToDefault", data, loadNewValues);
+        ajaxCallPost("ConversionCalculator", "ResetToDefault", data, loadNewValues);
     });
 });
 
@@ -44,7 +44,7 @@ function bindAccordianClicksConverter()
 function OnCurrencyChange()
 {
     var data = PopulateResponseObject();
-    ajaxCallPost("/CuMaster/ConversionCalculator", "CurrencyChanged", data, loadNewValues);
+    ajaxCallPostt("ConversionCalculator", "CurrencyChanged", data, loadNewValues);
     //$.ajax(
     //    {
     //        dataType: "json",
@@ -58,13 +58,13 @@ function OnCurrencyChange()
 function OnFromValueChange()
 {
     var data = PopulateResponseObject();
-    ajaxCallPost("/CuMaster/ConversionCalculator", "FromValueChanged", data, loadNewValues);
+    ajaxCallPost("ConversionCalculator", "FromValueChanged", data, loadNewValues);
 }
 
 function OnToValueChange()
 {
     var data = PopulateResponseObject();
-    ajaxCallPost("/CuMaster/ConversionCalculator", "ToValueChanged", data, loadNewValues);
+    ajaxCallPost("ConversionCalculator", "ToValueChanged", data, loadNewValues);
 }
 
 function PopulateResponseObject()
@@ -95,7 +95,7 @@ function loadNewValues(responseData)
 function saveConversion()
 {
     var data = CreateTrackerEntryObject();
-    ajaxCallPost("/CuMaster/ConversionTracker", "SaveNewTrackerEntry", data, onEntrySave);
+    ajaxCallPost("ConversionTracker", "SaveNewTrackerEntry", data, onEntrySave);
 }
 
 function CreateTrackerEntryObject()
