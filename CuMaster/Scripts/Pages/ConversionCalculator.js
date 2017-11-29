@@ -1,4 +1,7 @@
-﻿$(document).ready(function () {
+﻿_activeTimer = null;
+_activeTimerTo = null;
+
+$(document).ready(function () {
     bindAccordianClicksConverter();
 
     $("#fromCurrency, #toCurrency").change(function ()
@@ -6,14 +9,22 @@
         OnCurrencyChange();
     });
 
-    $("#currencyFromValue").change(function ()
+    $("#currencyFromValue").keyup(function ()
     {
-        OnFromValueChange();
+        if (_activeTimer == null)
+        {
+            _activeTimer = window.setTimeout(function () { OnFromValueChange(); _activeTimer = null }, 60);
+        }
+        
     });
 
-    $("#currencyToValue").change(function ()
+    $("#currencyToValue").keyup(function ()
     {
-        OnToValueChange();
+        if (_activeTimerTo == null)
+        {
+            _activeTimerTo = window.setTimeout(function () { OnToValueChange(); _activeTimerTo = null }, 60);
+        }
+        
     });
 
     //$("#btnSaveConversion").click(function ()
@@ -57,14 +68,47 @@ function OnCurrencyChange()
 
 function OnFromValueChange()
 {
-    var data = PopulateResponseObject();
-    ajaxCallPost("ConversionCalculator", "FromValueChanged", data, loadNewValues);
+    //add functionality so that if timestamp is an hour old, get from server instead....
+    var lastUpdated = moment($("#hLastUpdated").val());
+    if (moment().diff(lastUpdated, 'hours') >= 1)
+    {
+        var data = PopulateResponseObject();
+        ajaxCallPost("ConversionCalculator", "FromValueChanged", data, loadNewValues);
+    }
+    else
+    {
+        $("#currencyFromValue").val();
+        $("#currencyToValue").val(calculateRate($("#currencyFromValue").val()));
+    }
 }
 
 function OnToValueChange()
 {
-    var data = PopulateResponseObject();
-    ajaxCallPost("ConversionCalculator", "ToValueChanged", data, loadNewValues);
+    //ditto above
+    var lastUpdated = moment($("#hLastUpdated").val());
+    if (moment().diff(lastUpdated, 'hours') >= 1)
+    {
+        var data = PopulateResponseObject();
+        ajaxCallPost("ConversionCalculator", "ToValueChanged", data, loadNewValues);
+    }
+    else
+    {
+        $("#currencyFromValue").val(calculateReverseRate($("#currencyToValue").val()));
+    }
+}
+
+function calculateRate(valueToConvert)
+{
+    return (valueToConvert * $("#hFromRate").val()).toFixed(2);
+}
+
+function calculateReverseRate(valueToConvert)
+{
+    var rate = $("#hFromRate").val();
+    if (rate == 0)
+        return 0;
+    else
+        return (valueToConvert * (1 / rate)).toFixed(2);
 }
 
 function PopulateResponseObject()
