@@ -44,7 +44,7 @@ function bindAccordianClicksConverter()
 function OnCurrencyChange()
 {
     var data = PopulateResponseObject();
-    ajaxCallPostt("ConversionCalculator", "CurrencyChanged", data, loadNewValues);
+    ajaxCallPost("ConversionCalculator", "CurrencyChanged", data, loadNewValues);
     //$.ajax(
     //    {
     //        dataType: "json",
