@@ -10,7 +10,9 @@
 </head>
 <body>
     <script type="text/javascript">
-        siteRoot = '@Request.ApplicationPath';
+        siteRoot = '@HttpContext.Current.Request.ApplicationPath';
+        if (siteRoot == "/")
+            siteRoot = "";
     </script>
     @*<div class="wrapper">*@
         <header>
