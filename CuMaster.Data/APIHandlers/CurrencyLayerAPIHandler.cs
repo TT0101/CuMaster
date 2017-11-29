@@ -43,7 +43,8 @@ namespace CuMaster.Data.APIHandlers
                             TimeUpdated = DateTimeOffset.FromUnixTimeSeconds(currencyList.timestamp).DateTime
                         };
 
-                        if (Decimal.TryParse(kv.Value, out decimal rateTry))
+                        decimal rateTry;
+                        if (Decimal.TryParse(kv.Value, out rateTry))
                             bre.Rate = rateTry;
                         else
                             bre.Rate = 0;
