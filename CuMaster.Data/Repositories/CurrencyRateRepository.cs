@@ -25,13 +25,14 @@ namespace CuMaster.Data.Repositories
             }
         }
 
-        public IEnumerable<CurrencyRateEntity> GetRatesForCurrency(string currencyCd)
+        public IEnumerable<CurrencyRateEntity> GetRatesForCurrency(string currencyCd, bool fromToOnly)
         {
             //return this.EntityData.Where(e => e.FromCurrency == currencyCd || e.ToCurrency == currencyCd);
             using (var context = new DataAccessFramework.DBConnection.DBConnectionContext(DatabaseName.CuMaster))
             {
-                SqlParameter[] sparams = new SqlParameter[1];
+                SqlParameter[] sparams = new SqlParameter[2];
                 sparams[0] = new SqlParameter("Currency", currencyCd);
+                sparams[1] = new SqlParameter("GetOnlyFromTo", fromToOnly);
 
                 return context.ExecuteSproc<CurrencyRateEntity>("usp_GetCurrencyRatesUsingCurrency", sparams);
             }

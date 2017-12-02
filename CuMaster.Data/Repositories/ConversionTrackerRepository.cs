@@ -95,7 +95,7 @@ namespace CuMaster.Data.Repositories
                 sparams[4] = new SqlParameter("ToAmount", item.ToAmount);
                 sparams[5] = new SqlParameter("RateToUse", item.RateToUse);
                 sparams[6] = new SqlParameter("UpdateRate", item.UpdateRate);
-                sparams[7] = new SqlParameter("LastUpdatedDate", item.LastUpdatedDate);
+                sparams[7] = new SqlParameter("LastUpdatedDate", item.LastUpdatedDate.ToUniversalTime());
                 sparams[8] = new SqlParameter("SessionID", item.SessionID);
                 sparams[9] = new SqlParameter("DateCookieExpires", null); //get this from cookie object using session id when built.  For now it'll work
 

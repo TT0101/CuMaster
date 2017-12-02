@@ -1,7 +1,8 @@
 ﻿_activeTimer = null;
 _activeTimerTo = null;
 
-$(document).ready(function () {
+$(document).ready(function ()
+{
     bindAccordianClicksConverter();
 
     $("#fromCurrency, #toCurrency").change(function ()
@@ -42,6 +43,8 @@ $(document).ready(function () {
         var data = PopulateResponseObject();
         ajaxCallPost("ConversionCalculator", "ResetToDefault", data, loadNewValues);
     });
+
+    $("#dateLastUpdated").text(convertToLocalTime($("#dateLastUpdated").text()));
 });
 
 function bindAccordianClicksConverter()
@@ -99,16 +102,24 @@ function OnToValueChange()
 
 function calculateRate(valueToConvert)
 {
-    return (valueToConvert * $("#hFromRate").val()).toFixed(2);
+    var val = (valueToConvert * $("#hFromRate").val());
+    var roundTo = roundCurrencyTo($("#hIsCrypto").val());
+  
+    return val.toFixed(roundTo);
 }
 
 function calculateReverseRate(valueToConvert)
 {
     var rate = $("#hFromRate").val();
+    var roundTo = roundCurrencyTo($("#hIsCrypto").val());
     if (rate == 0)
         return 0;
     else
-        return (valueToConvert * (1 / rate)).toFixed(2);
+    {
+        var val = ((valueToConvert * (1 / rate)));
+        
+        return val.toFixed(roundTo);
+    }
 }
 
 function PopulateResponseObject()
@@ -126,14 +137,19 @@ function PopulateResponseObject()
 
 function loadNewValues(responseData)
 {
+    loadDropdown("toCurrency", responseData.CurrenciesTo);
+    $("#toCurrency option[value=" + responseData.CurrencyTo.ID + "]").prop("selected", "selected");
+
     $("#currencyFromValue").val(responseData.ValueFrom);
     $("#currencyToValue").val(responseData.ValueTo);
     $("#currencyFromDisplayName").text(responseData.CurrencyFrom.Name);
     $("#currencyToRate").text(responseData.FromRate);
     $("#currencyToDisplayName").text(responseData.CurrencyTo.Name);
-    $("#dateLastUpdated").text(responseData.CurrencyFromLastUpdatedString);
+    $("#dateLastUpdated").text(convertToLocalTime(responseData.CurrencyFromLastUpdatedUTCString));
     $("#currencyFromSymbol").html(responseData.CurrencyFrom.HTMLSymbol);
     $("#currencyToSymbol").html(responseData.CurrencyTo.HTMLSymbol);
+
+    
 }
 
 function saveConversion()

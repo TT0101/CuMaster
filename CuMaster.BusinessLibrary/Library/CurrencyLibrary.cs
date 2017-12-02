@@ -51,12 +51,12 @@ namespace CuMaster.BusinessLibrary.Library
             if (currencyFrom != currencyTo)
             {
                 CurrencyRateEntity rateFromTo = crRes.GetSingle(currencyFrom, currencyTo);
-                CurrencyRateEntity rateToFrom = crRes.GetSingle(currencyTo, currencyFrom);
+                //CurrencyRateEntity rateToFrom = crRes.GetSingle(currencyTo, currencyFrom);
 
                 //if you can't find the selected one, get the the defaults.  If you can't get the defaults, get the first ones....
                 if (rateFromTo == null)
                 {
-                    rateFromTo = crRes.GetRatesForCurrency(currencyFrom).FirstOrDefault(); //get the first pair using the currency from provided
+                    rateFromTo = crRes.GetRatesForCurrency(currencyFrom, true).FirstOrDefault(); //get the first pair using the currency from provided
 
                     if (rateFromTo == null && currencyFrom != defaultFrom) //if that doesn't work, try finding the to currency provided paired with the default
                     {
@@ -66,21 +66,28 @@ namespace CuMaster.BusinessLibrary.Library
                     {
                         rateFromTo = crRes.Get().FirstOrDefault(); //if not, just get the first one
                     }
-
                 }
 
-                if (rateToFrom == null)
+                CurrencyRateEntity rateToFrom = new CurrencyRateEntity
                 {
-                    rateToFrom = crRes.GetSingle(currencyTo, rateFromTo.FromCurrency); //try to get the opposite pair with the current to currency and whatever was found above
-                    if (rateToFrom == null && currencyTo != defaultTo) //if this doesn't work, try the default currency with what was selected above
-                    {
-                        rateToFrom = crRes.GetSingle(defaultTo, rateFromTo.FromCurrency);
-                    }
-                    if (rateToFrom == null) //if that doesn't work, get the first one you can find
-                    {
-                        rateToFrom = crRes.GetRatesForCurrency(rateFromTo.ToCurrency).FirstOrDefault();
-                    }
-                }
+                    FromCurrency = rateFromTo.ToCurrency,
+                    ToCurrency = rateFromTo.FromCurrency,
+                    Rate = (rateFromTo.Rate == 0) ? 0 : (1 / rateFromTo.Rate),
+                    LastUpdated = rateFromTo.LastUpdated
+                };
+
+                //if (rateToFrom == null)
+                //{
+                //    rateToFrom = crRes.GetSingle(currencyTo, rateFromTo.FromCurrency); //try to get the opposite pair with the current to currency and whatever was found above
+                //    if (rateToFrom == null && currencyTo != defaultTo) //if this doesn't work, try the default currency with what was selected above
+                //    {
+                //        rateToFrom = crRes.GetSingle(defaultTo, rateFromTo.FromCurrency);
+                //    }
+                //    if (rateToFrom == null) //if that doesn't work, get the first one you can find
+                //    {
+                //        rateToFrom = crRes.GetRatesForCurrency(rateFromTo.ToCurrency).FirstOrDefault();
+                //    }
+                //}
 
                 set = new Tuple<CurrencyRateModel, CurrencyRateModel>(this.CreateRateModel(rateFromTo), this.CreateRateModel(rateToFrom));
 

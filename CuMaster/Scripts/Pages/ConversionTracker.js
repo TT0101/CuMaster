@@ -25,11 +25,11 @@ function initTrackerTable()
             [
                 //{ data: 'EntryID', hidden: true, sortable: false},
                 { data: 'EntryName', name:'EntryName', title: 'Entry'},
-                { data: 'AmountFrom', name: 'AmountFromString', title: 'Converted Amount', width: "100px"},
+                { data: 'AmountFrom', name: 'AmountFrom', title: 'Converted Amount', width: "100px"},
                 { data: 'CurrencyFrom', name: 'CurrencyFrom', title: 'Currency From', width: "150px"},
-                { data: 'AmountTo', name:'AmountToString', title: 'New Amount', width: "100px" },
+                { data: 'AmountTo', name:'AmountTo', title: 'New Amount', width: "100px" },
                 { data: 'CurrencyTo', name: 'CurrencyTo', title: 'Currency To', width: "150px" },
-                { data: 'LastUpdatedString', name: 'LastUpdated', title: 'Last Updated', width: "100px" },
+                { data: 'LastUpdated', name: 'LastUpdated', title: 'Last Updated', width: "100px" },
                 { data: null, name: 'UpdateRate', title: 'New Rate Update?', width: '20px' },
                 {data: null, title: 'Delete', width: '20px'}
                 
@@ -41,7 +41,7 @@ function initTrackerTable()
             order: [[0, 'desc']],
             createdRow: function (row, data, index)
             {
-                if (data.AutoUpdate) //why is this not working.  Also, need to make cursor turn into hand when hovered over row...
+                if (data.AutoUpdate) // Also, need to make cursor turn into hand when hovered over row...
                 {
                     $('td', row).eq(6).html(_checkedBox);
                 }
@@ -51,6 +51,8 @@ function initTrackerTable()
                 }
 
                 $('td', row).eq(7).html("<button class='btn btn-primary deleteButton' onclick='deleteEntry(" + data.EntryID + ");'><span class='glyphicon glyphicon-trash'></span></button>");
+
+                $('td', row).eq(5).html(convertToLocalTime(data.LastUpdateString));
             },
             fnServerData: function (sSource, aoData, fnCallback)
             {

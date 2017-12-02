@@ -8,7 +8,7 @@ namespace CuMaster.Data.RepositoryInterfaces
 {
     public interface ICurrencyRateRepository : IGetRepository<CurrencyRateEntity>
     {
-        IEnumerable<CurrencyRateEntity> GetRatesForCurrency(string currencyCd);
+        IEnumerable<CurrencyRateEntity> GetRatesForCurrency(string currencyCd, bool fromToOnly);
         CurrencyRateEntity GetSingle(string fromCurrencyCd, string toCurrencyCd);
 
 

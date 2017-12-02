@@ -28,17 +28,12 @@ namespace CuMaster.BusinessLibrary.Models
             this.FromCurrency = new Lookups.CurrencyLookup().GetItemFromLookup(currencyFrom);
             this.ToCurrency = new Lookups.CurrencyLookup().GetItemFromLookup(currencyFrom);
             this.Rate = 1;
-            this.LastUpdatedOn = DateTime.Now;
+            this.LastUpdatedOn = DateTime.Now.ToUniversalTime();
         }
 
         public decimal Convert(decimal value)
         {
             return value * this.Rate;
-        }
-
-        public void UpdateRate()
-        {
-            throw new NotImplementedException();
         }
     }
 }

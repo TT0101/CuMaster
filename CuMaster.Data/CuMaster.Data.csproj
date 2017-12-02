@@ -67,7 +67,7 @@
   <ItemGroup>
     <Compile Include="APIHandlers\CryptonatorAPIHandler.cs" />
     <Compile Include="APIHandlers\CurrencyLayerAPIHandler.cs" />
-    <Compile Include="APIHandlers\GoogleAPIHandler.cs" />
+    <Compile Include="APIHandlers\GoogleGeocodingAPIHandler.cs" />
     <Compile Include="APIHandlers\YahooAPIHandler.cs" />
     <Compile Include="APIObjects\CryptonatorResponse.cs" />
     <Compile Include="APIObjects\CryptonatorTickerObject.cs" />

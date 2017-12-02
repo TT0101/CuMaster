@@ -16,7 +16,14 @@ namespace CuMaster.BusinessLibrary.ViewModels
         {
             get
             {
-                return Decimal.Round(_valueFrom, 2);
+                if (this.CurrencyTo != null && this.CurrencyTo.IsCrypto)
+                {
+                    return Decimal.Round(_valueFrom, 9);
+                }
+                else
+                {
+                    return Decimal.Round(_valueFrom, 2);
+                }
             }
             set
             {
@@ -31,7 +38,14 @@ namespace CuMaster.BusinessLibrary.ViewModels
         {
             get
             {
-                return Decimal.Round(_valueTo, 2);
+                if (this.CurrencyTo != null && this.CurrencyTo.IsCrypto)
+                {
+                    return Decimal.Round(_valueTo, 9);
+                }
+                else
+                {
+                    return Decimal.Round(_valueTo, 2);
+                }
             }
             set
             {
@@ -52,24 +66,38 @@ namespace CuMaster.BusinessLibrary.ViewModels
         {
             get
             {
-                return Decimal.Round(_fromRate, 2);
+                if (this.CurrencyTo != null && this.CurrencyTo.IsCrypto)
+                {
+                    return Decimal.Round(_fromRate, 9);
+                }
+                else
+                {
+                    return Decimal.Round(_fromRate, 2);
+                }
             }
             set
             {
                 _fromRate = value;
             }
         }
-        public List<SelectListItem> Currencies { get; set; }
-        public IEnumerable<SelectListItem> CurrenciesTo { get; set; }
-        public DateTime CurrencyFromLastUpdated { get; set; }
-        public string CurrencyFromLastUpdatedString
+
+        public decimal FromRateFull
         {
             get
             {
-                return this.CurrencyFromLastUpdated.ToLocalTime().ToShortDateString() + " " + this.CurrencyFromLastUpdated.ToLocalTime().ToLongTimeString();
+                return _fromRate;
+            }
+        }
+        public List<SelectListItem> Currencies { get; set; }
+        public IEnumerable<SelectListItem> CurrenciesTo { get; set; }
+        public DateTime CurrencyFromLastUpdated { get; set; }
+        public string CurrencyFromLastUpdatedUTCString
+        {
+            get
+            {
+                return this.CurrencyFromLastUpdated.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'"); 
             }
         }
 
-       
     }
 }

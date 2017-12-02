@@ -20,5 +20,6 @@ namespace CuMaster.Data.Entities
         public bool UpdateRate { get; set; }
         public DateTime LastUpdatedDate { get; set; }
         public string SessionID { get; set; }
+        public bool IsCrypto { get; set; }
     }
 }

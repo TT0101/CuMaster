@@ -21,38 +21,24 @@ namespace CuMaster
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        
-        protected void Application_AuthenticationRequest(object sender, EventArgs e)
-        {
-            Security.SecurityManager sm = new Security.SecurityManager();
-            try
-            {
-                HttpCookie userCookie = Helpers.Cookies.CookieHelper.GetCookie(Request, "cumanagercookie");
-                if(userCookie == null)
-                {
-                    //create cookie
-                    Helpers.Cookies.CookieHelper.CreateSessionCookie(Response, "cumanagercookie", 1);
-                }
 
-                if (userCookie == null || string.IsNullOrEmpty(userCookie.Value))
-                {
-                    //delete cookie
-                }
-
-                FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(userCookie.Value);
-
-                if(authTicket == null)
-                {
-                    //delete cookie
-                }
-
-                //create GenericIdentity, user data
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //protected void Application_AuthenticationRequest(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        //string sessionID = Helpers.AuthenticationHelper.CreateSessionCookie(HttpContext.Current, 120);
+        //        //Helpers.AuthenticationHelper.CreateSession(HttpContext.Current, sessionID);  
+        //        string sessionID = Helpers.AuthenticationHelper.GetSessionID(HttpContext.Current.Request);
+        //        if(sessionID != null)
+        //        {
+        //            Helpers.AuthenticationHelper
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public void Application_Error(Object ender, EventArgs e)
         {

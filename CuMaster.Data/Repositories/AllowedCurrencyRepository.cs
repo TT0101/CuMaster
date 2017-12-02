@@ -19,9 +19,7 @@ namespace CuMaster.Data.Repositories
             using (var context = new DataAccessFramework.DBConnection.DBConnectionContext(DatabaseName.CuMaster))
             {
                 SqlParameter[] sparams = new SqlParameter[1];
-                sparams[0] = new SqlParameter("CurrencySelected", SqlDbType.VarChar);
-                sparams[0].Direction = System.Data.ParameterDirection.Input;
-                sparams[0].Value = forParameter;
+                sparams[0] = new SqlParameter("CurrencySelected", forParameter);
 
                 return context.ExecuteSproc<CurrencyEntity>("usp_GetAllowedCurrencies", sparams);
             }

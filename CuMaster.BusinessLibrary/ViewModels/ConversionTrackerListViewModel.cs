@@ -26,7 +26,8 @@ namespace CuMaster.BusinessLibrary.ViewModels
                     CurrencyFrom = t.CurrencyFrom,
                     CurrencyTo = t.CurrencyTo,
                     LastUpdated = t.LastUpdatedDate,
-                    RateUsed = t.RateToUse
+                    RateUsed = t.RateToUse,
+                    IsCrypto = t.IsCrypto
                 }),
                 extraData = dt.extraData,
                 recordsFiltered = dt.recordsFiltered,

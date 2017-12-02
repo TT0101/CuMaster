@@ -82,6 +82,7 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -447,6 +448,7 @@
     <Content Include="Scripts\Pages\ConversionTracker.js" />
     <Content Include="Scripts\Pages\CuMasterCommon.js" />
     <Content Include="Scripts\Pages\EmailAlertRegistration.js" />
+    <Content Include="Scripts\Pages\Session.js" />
     <Content Include="Scripts\ValidationOverride.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -462,14 +464,13 @@
     <Compile Include="Controllers\EmailAlerts\EmailAlertRegistrationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\Testing\APITestingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Cookies\CookieHelper.cs" />
-    <Compile Include="Helpers\Cookies\Session.cs" />
-    <Compile Include="Helpers\Cookies\SessionDefaults.cs" />
-    <Compile Include="Helpers\Cookies\SessionLocation.cs" />
+    <Compile Include="Helpers\AuthenticationHelper.cs" />
+    <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -483,10 +484,10 @@
     <Content Include="Views\Testing\APITestingView.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ConversionCalculator\ConversionCalculator.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Error\ErrorView.cshtml" />
     <Content Include="Views\ConversionCalculator\ConversionTracker.cshtml" />
     <Content Include="Views\EmailAlerts\EmailAlertRegistration.cshtml" />
+    <Content Include="Views\Shared\Session.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -498,6 +499,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\APITesting\" />
     <Folder Include="Views\EmailAlertRegistration\" />
+    <Folder Include="Views\Session\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CuMaster.BusinessLibrary\CuMaster.BusinessLibrary.csproj">

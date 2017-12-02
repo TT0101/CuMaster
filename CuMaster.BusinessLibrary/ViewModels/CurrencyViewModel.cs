@@ -13,6 +13,8 @@ namespace CuMaster.BusinessLibrary.ViewModels
         public string Name { get; set; }
         public string HTMLSymbol { get; set; }
 
+        public bool IsCrypto { get; set; }
+
         public CurrencyViewModel()
         {
 
@@ -23,6 +25,7 @@ namespace CuMaster.BusinessLibrary.ViewModels
             this.ID = cModel.ID;
             this.Name = cModel.Name;
             this.HTMLSymbol = cModel.HTMLSymbol;
+            this.IsCrypto = cModel.IsCryptocurrency;
         }
     }
 }

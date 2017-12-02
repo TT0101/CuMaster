@@ -66,7 +66,7 @@ function hideError()
  //html 5 geolocation
 function getLocationObject()
 {
-    var posObj = new object();
+    var posObj = new Object();
 
     if (navigator.geolocation)
     {
@@ -149,4 +149,65 @@ function clearValidation(formElement)
     });
     validator.resetForm();//remove error class on name elements and clear history
     validator.reset();//remove all error and success data
+}
+
+function loadDropdown(ddID, values)
+{
+    var subSelect = $('#' + ddID);
+    subSelect.empty();
+    if (values.length > 0)
+    {
+        var group = "";
+        var optGroup = "";
+        $.each(values, function (index, val) 
+        {
+            if (val.Group.Name != "" && group != val.Group.Name)
+            {
+                if (optGroup != "")
+                {
+                    subSelect.append(optGroup);
+                }
+                optGroup = $('<optgroup>');
+                group = val.Group.Name;
+                optGroup.attr('label', val.Group.Name);
+            }
+
+            if (optGroup != "")
+            {
+                optGroup.append($('<option/>',
+                    {
+                        value: val.Value,
+                        text: val.Text
+                    }));
+            }
+            else
+            {
+                subSelect.append($('<option/>',
+                    {
+                        value: val.Value,
+                        text: val.Text
+                    }));
+            }
+
+           
+        });
+
+        if (optGroup != "")
+        {
+            subSelect.append(optGroup);
+        }
+    }
+}
+
+function roundCurrencyTo(isCrypto)
+{
+    if (isCrypto || isCrypto == "true")
+        return 9;
+    else
+        return 2;
+}
+
+function convertToLocalTime(date)
+{
+    return moment.utc(date).local().format('L LT');
 }

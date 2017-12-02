@@ -13,13 +13,21 @@ namespace CuMaster.BusinessLibrary.ViewModels
         public string CurrencyFrom { get; set; }
         public string CurrencyTo { get; set; }
         public decimal RateUsed { get; set; }
+        public bool IsCrypto { get; set; }
 
         private decimal _amountFrom;
         public decimal AmountFrom
         {
             get
             {
-                return Decimal.Round(_amountFrom, 2);
+                if (this.CurrencyTo != null && this.IsCrypto)
+                {
+                    return Decimal.Round(_amountFrom, 9);
+                }
+                else
+                {
+                    return Decimal.Round(_amountFrom, 2);
+                }
             }
             set
             {
@@ -28,33 +36,25 @@ namespace CuMaster.BusinessLibrary.ViewModels
 
         }
 
-        public string AmountFromString
-        {
-            get
-            {
-                return this.AmountFrom.ToString("0.00");
-            }
-        }
-
         private decimal _amountTo;
         public decimal AmountTo
         {
             get
             {
-                return Decimal.Round(_amountTo, 2);
+                if (this.CurrencyTo != null && this.IsCrypto)
+                {
+                    return Decimal.Round(_amountTo, 9);
+                }
+                else
+                {
+                    return Decimal.Round(_amountTo, 2);
+                }
             }
             set
             {
                 _amountTo = value;
             }
 
-        }
-        public string AmountToString
-        {
-            get
-            {
-                return this.AmountTo.ToString("0.00");
-            }
         }
 
         public bool AutoUpdate { get; set; }
@@ -63,7 +63,7 @@ namespace CuMaster.BusinessLibrary.ViewModels
         {
             get
             {
-                return this.LastUpdated.ToString();
+                return this.LastUpdated.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
             }
             set
             {

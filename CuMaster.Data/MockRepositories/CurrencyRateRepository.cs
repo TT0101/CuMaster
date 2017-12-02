@@ -34,7 +34,7 @@ namespace CuMaster.Data.MockRepositories
             return this.Get().SingleOrDefault(cr => cr.FromCurrency == fromCurrencyCd && cr.ToCurrency == toCurrencyCd);
         }
 
-        public IEnumerable<CurrencyRateEntity> GetRatesForCurrency(string currencyCd)
+        public IEnumerable<CurrencyRateEntity> GetRatesForCurrency(string currencyCd, bool fromToOnly)
         {
             return this.Get().Where(cr => cr.FromCurrency == currencyCd || cr.ToCurrency == currencyCd);
         }

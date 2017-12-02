@@ -19,11 +19,11 @@
                 &nbsp;=&nbsp;
                 <label id="currencyToRate">@Html.DisplayFor(modelItem => Model.FromRate)</label>&nbsp;
                 <label id="currencyToDisplayName">@Html.DisplayFor(modelItem => Model.CurrencyTo.Name)</label>
-                @Html.HiddenFor(modelItem => Model.FromRate, new { @id = "hFromRate" })
+                @Html.HiddenFor(modelItem => Model.FromRateFull, new { @id = "hFromRate" })
             </div>
             <div class="text-right pull-right col-md-4">
-                Rate Last Updated: <label id="dateLastUpdated">@Html.DisplayFor(modelItem => Model.CurrencyFromLastUpdatedString)</label>
-                @Html.HiddenFor(model => model.CurrencyFromLastUpdated, new { @id= "hDateUpdated"})
+                Rate Last Updated: <label id="dateLastUpdated">@Model.CurrencyFromLastUpdatedUTCString</label>
+                @Html.HiddenFor(model => model.CurrencyFromLastUpdatedUTCString, new { @id= "hDateUpdated"})
             </div>
             <br/><br/>
             <form>
@@ -60,6 +60,7 @@
                     </div>
                 
             </form>
+            @Html.Hidden("hIsCrypto", Model.CurrencyTo.IsCrypto)
         </div>
     </div>
 </div>
