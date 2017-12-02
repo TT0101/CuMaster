@@ -88,7 +88,7 @@ namespace CuMaster.UpdateCurrencyRates
              foreach (string cd in toRates)
              {
                     APICurrencyRates acr = new APICurrencyRates(cs.CurrencyCd, cd, SourceDelimiters[(int)source]);
-                    Debug.WriteIf((acr.CurrencyCdFrom == "BTC"), acr.CurrencyPairID);
+                   // Debug.WriteLineIf((acr.CurrencyCdFrom == "BTC"), acr.CurrencyPairID);
                     rateList.Add(acr);
              }//);
 
@@ -111,7 +111,7 @@ namespace CuMaster.UpdateCurrencyRates
                     }
 
                     Data.APIHandlers.CurrencyLayerAPIHandler clAPI = new Data.APIHandlers.CurrencyLayerAPIHandler();
-                    List<Data.Entities.BasicRateEntity> clRates = new List<BasicRateEntity>(); //clAPI.GetUSDCurrencyRates();
+                    List<Data.Entities.BasicRateEntity> clRates = clAPI.GetUSDCurrencyRates();
 
                     foreach (Data.Entities.BasicRateEntity clr in clRates)
                     {
@@ -125,9 +125,11 @@ namespace CuMaster.UpdateCurrencyRates
                             }
                         }
                     }
-
-                    CalculateCrossRates(ref rates, clRates.FirstOrDefault().CurrencyFrom);
-                    CalculateOppositePairsAndAddToList(ref rates);
+                    if (clRates.Any())
+                    {
+                        CalculateCrossRates(ref rates, clRates.FirstOrDefault().CurrencyFrom);
+                        CalculateOppositePairsAndAddToList(ref rates);
+                    }
 
                     // Debug.WriteLine("Done currencylayer");
                 }

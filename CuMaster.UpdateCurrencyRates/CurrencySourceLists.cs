@@ -39,7 +39,13 @@ namespace CuMaster.UpdateCurrencyRates
 
         internal IEnumerable<CurrencySource> GetListOfToCurrencies(string fromSource, string baseCurrency)
         {
-            return this.FullCurrencyList.Where(c => (c.SourceTo == fromSource || c.SourceTo == "BOTH") && c.CurrencyCd != baseCurrency);
+            using (var context = new DataAccessFramework.DBConnection.DBConnectionContext(DatabaseName.CuMaster))
+            {
+                SqlParameter[] sparams = new SqlParameter[2];
+                sparams[0] = new SqlParameter("SourceFrom", fromSource);
+                sparams[1] = new SqlParameter("BaseToUse", baseCurrency);
+                return context.ExecuteSproc<CurrencySource>("usp_GetCurrencySourcesTo", sparams);
+            }
         }
 
     }
