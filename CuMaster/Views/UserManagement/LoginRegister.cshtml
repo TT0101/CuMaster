@@ -1,0 +1,55 @@
+﻿<div class="modal fade" id="modalLoginRegister" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h4 class="modal-title">Login</h4>*@
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="font-size:20px;" class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="alert alert-success hidden" id="registerSuccess">
+                            Thank you! You have successfully created an account. Please log in to continue.
+                        </div>
+                        <div class="alert alert-danger hidden" id="registerFailed">
+                            Your account registration was unsuccessful. Please try again.
+                        </div>
+
+                        <div class="alert alert-success hidden" id="loginSuccess">
+                            Thank you! You have logged in successfully.
+                        </div>
+                        <div class="alert alert-danger hidden" id="loginFailed">
+                            Your login was unsuccessful.
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#loginPane">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="register-tab" data-toggle="tab" href="#registerPane">Create an Account</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active" role="tabpanel" id="loginPane">
+                            <br/>
+                            @Html.Action("Index", "Login")
+                        </div>
+                        <div class="tab-pane fade" role="tabpanel" id="registerPane">
+                            <br/>
+                            @Html.Action("Index", "Register")
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    Forgot your username or password? <a href="#">Click here to reset it</a>&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="btnCloseLoginRegister">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+

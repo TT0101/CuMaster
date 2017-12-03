@@ -88,9 +88,7 @@ function onAlertSave(response)
     }
     else if(response.StatusKey == "SUCCESS")
     {
-
         showEmailUpdateSuccessMessage();
-
     }
 }
 

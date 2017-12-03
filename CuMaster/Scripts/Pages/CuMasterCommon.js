@@ -64,17 +64,17 @@ function hideError()
 
 
  //html 5 geolocation
-function getLocationObject()
-{
-    var posObj = new Object();
+//function getLocationObject()
+//{
+//    var posObj = new Object();
 
-    if (navigator.geolocation)
-    {
-        posObj = navigator.geolocation.getCurrentPosition();
+//    if (navigator.geolocation)
+//    {
+//        posObj = navigator.geolocation.getCurrentPosition();
 
-    } 
-    return posObj;
-}
+//    } 
+//    return posObj;
+//}
 
         //function showPosition(position) {
         //    x.innerHTML = "Latitude: " + position.coords.latitude +
@@ -201,7 +201,7 @@ function loadDropdown(ddID, values)
 
 function roundCurrencyTo(isCrypto)
 {
-    if (isCrypto || isCrypto == "true")
+    if (isCrypto == true || isCrypto == "true" || isCrypto == "True")
         return 9;
     else
         return 2;
@@ -210,4 +210,77 @@ function roundCurrencyTo(isCrypto)
 function convertToLocalTime(date)
 {
     return moment.utc(date).local().format('L LT');
+}
+
+
+function showSuccessMessage(alertName, alsoExecute)
+{
+    //show success and hide after period of time
+    $("#" + alertName).removeClass('hidden').removeClass('hide');
+    var timeoutID = window.setTimeout(function ()
+    {
+        $("#" + alertName).addClass('hidden').addClass('hide');
+        alsoExecute();
+    }, 5000);
+}
+
+function showFailedMessage(alertName, alsoExecute)
+{
+    //show success and hide after period of time
+    $("#" + alertName).removeClass('hidden').removeClass('hide');
+    var timeoutID = window.setTimeout(function ()
+    {
+        $("#" + alertName).addClass('hidden').addClass('hide');
+        alsoExecute();
+    }, 5000);
+}
+
+function setupMenu()
+{
+    $("#signInMenu").toggleClass('hidden');
+    //$('#myAccountMenu').toggleClass('hidden');
+    $('#myAccountDD').toggleClass('hidden');
+}
+
+function setupMenuForLogOff()
+{
+    $("#signInMenu").removeClass('hidden');
+    //$('#myAccountMenu').addClass('hidden');
+    $('#myAccountDD').addClass('hidden');
+}
+
+function setupMenuForLogOn()
+{
+    $("#signInMenu").addClass('hidden');
+    //$('#myAccountMenu').addClass('hidden');
+    $('#myAccountDD').removeClass('hidden');
+}
+
+function initValiation(form, rules)
+{
+    $('#' + form).validate({
+
+        // validation rules for registration form
+        errorClass: "error-class",
+        validClass: "valid-class",
+        errorElement: 'div',
+        errorPlacement: function (error, element)
+        {
+            if (element.parent('.input-group').length)
+            {
+                error.insertAfter(element.parent());
+            } else
+            {
+                error.insertAfter(element);
+            }
+        },
+        onError: function ()
+        {
+            $('.input-group.error-class').find('.help-block.form-error').each(function ()
+            {
+                $(this).closest('.form-group').addClass('error-class').append($(this));
+            });
+        },
+        rules: rules
+    });
 }

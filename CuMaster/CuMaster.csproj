@@ -448,7 +448,9 @@
     <Content Include="Scripts\Pages\ConversionTracker.js" />
     <Content Include="Scripts\Pages\CuMasterCommon.js" />
     <Content Include="Scripts\Pages\EmailAlertRegistration.js" />
+    <Content Include="Scripts\Pages\LoginRegister.js" />
     <Content Include="Scripts\Pages\Session.js" />
+    <Content Include="Scripts\Pages\UserDashboard.js" />
     <Content Include="Scripts\ValidationOverride.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -459,13 +461,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\ConversionCalculator\ConversionCalculatorController.cs" />
     <Compile Include="Controllers\ConversionCalculator\ConversionTrackerController.cs" />
     <Compile Include="Controllers\EmailAlerts\EmailAlertRegistrationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserManagement\LoginController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\Testing\APITestingController.cs" />
+    <Compile Include="Controllers\UserManagement\LoginRegisterController.cs" />
+    <Compile Include="Controllers\UserManagement\RegisterController.cs" />
+    <Compile Include="Controllers\UserManagement\UserDashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -488,6 +495,11 @@
     <Content Include="Views\ConversionCalculator\ConversionTracker.cshtml" />
     <Content Include="Views\EmailAlerts\EmailAlertRegistration.cshtml" />
     <Content Include="Views\Shared\Session.cshtml" />
+    <Content Include="Views\UserManagement\Login.cshtml" />
+    <Content Include="Views\UserManagement\LoginRegister.cshtml" />
+    <Content Include="Views\UserManagement\Register.cshtml" />
+    <Content Include="Views\UserManagement\UserDashboard.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -497,9 +509,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AccessDenied\" />
     <Folder Include="Views\APITesting\" />
     <Folder Include="Views\EmailAlertRegistration\" />
-    <Folder Include="Views\Session\" />
+    <Folder Include="Views\UserDashboard\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CuMaster.BusinessLibrary\CuMaster.BusinessLibrary.csproj">

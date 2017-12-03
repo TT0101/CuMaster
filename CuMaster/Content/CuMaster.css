@@ -31,3 +31,19 @@
 
 body{padding-bottom: 70px;}
 
+.addon-primary
+{
+    color: #fff;
+    background-color: #44887b;
+}
+
+.addon-success {
+    background-color: #dff0d8;
+}
+
+.addon-danger 
+{
+    background-color: #f2dede;
+}
+
+

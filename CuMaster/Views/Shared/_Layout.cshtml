@@ -14,7 +14,44 @@
         if (siteRoot == "/")
             siteRoot = "";
     </script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.globalize.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/Pages/CuMasterCommon.js"></script>
+    <script type="text/javascript" src="~/Scripts/ValidationOverride.js"></script>
+     @*@Html.Action("Index", "Session");*@   
+    <script type="text/javascript" src="~/Scripts/Pages/Session.js"></script>
+    <script type="text/javascript">
 
+        $(function ()
+        {
+            if ("geolocation" in navigator)
+            {
+                tryGetGeolocation();
+            }
+            else
+            {
+                getIPAndCreateSession();
+            }
+
+            //ajaxCallGet("Login", "UserIsLoggedIn", "{}", function (response)
+            //{
+            //    if (response.IsUserLoggedIn)
+            //    {
+            //        setupMenuForLogOn();
+            //    }
+            //    else
+            //    {
+            //        setupMenuForLogOff();
+            //    }
+            //});
+        });
+    </script>
     @*<div class="wrapper">*@
         <header>
             @*Navigation bar*@
@@ -33,12 +70,37 @@
                         <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "ExchangeCostCalculator")">Exchange Cost Calculator</a></li>
                         <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "Help")">Help</a></li>
                     </ul>
-                    <form class="form-inline my-2 text-right">
+                    @*<form class="form-inline text-right">
                         @*<span class="glyphicon glyphicon-user"></span>*@
-                        <i class="fa fa-user-o" style="color:#eee;" aria-hidden="true"></i>
-                        <a class="nav-link hidden" href="#">My Account</a>
-                        <button class="nav-link button btn-link" style="color:#eee;">Sign In/Register</button>
-                    </form>
+                        @*<i class="fa fa-user-o" style="color:#eee;" aria-hidden="true"></i>
+                        <div class="dropdown hidden" id="myAccountDD">
+                            <button type="button" class="nav-item button btn-link hidden" id="myAccountMenu" style="color:#eee;cursor:pointer">My Account</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="@Url.Action("Index", "UserDashboard")">Profile and Defaults</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "UserEmailAlertManager")">Manage Email Alerts</a>
+                                <a class="dropdown-item" onclick="logoffUser();">Logoff</a>
+                            </div>
+                        </div>
+                        <button type="button" class="nav-link button btn-link" style="color:#eee;" data-toggle="modal" data-target="#modalLoginRegister" id="signInMenu">Sign In/Register</button>
+                    </form>*@
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li class="" id="signInMenu"><a href="#" data-toggle="modal" data-target="#modalLoginRegister" ><span class="fa fa-user-o" style="color:#eee;" aria-hidden="true"></span>&nbsp;Sign In/Register</a></li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown" id="myAccountDD">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="myAccountMenu"><span class="fa fa-user-o" style="color:#eee;" aria-hidden="true"></span>&nbsp;My Account<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "UserDashboard")">Profile and Defaults</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "UserEmailAlertManager")">Manage Email Alerts</a></li>
+                                    <li><a class="dropdown-item"href="@Url.Action("LogOffUser", "Login")">Log Off</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                    &nbsp;
                 </div>
             </div>
             @*End navigation bar*@
@@ -64,25 +126,16 @@
         </div>
         <div class="container-fluid body-content">
             @RenderBody()
-            @Html.Action("Index", "EmailAlertRegistration");
+            @Html.Action("Index", "EmailAlertRegistration")
+            @Html.Action("Index", "LoginRegister")
         </div>
         <br />
 
-        <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery.validate.globalize.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-        <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.bootstrap.js"></script>
-        <script type="text/javascript" src="~/Scripts/Pages/CuMasterCommon.js"></script>
-        <script type="text/javascript" src="~/Scripts/ValidationOverride.js"></script>
+        
         @*<script src="@Url.Content("~/Scripts/mvcfoolproof.unobtrusive.js")" type="text/javascript"></script>*@
         <script type="text/javascript" src=@Url.Content("~/Scripts/Pages/EmailAlertRegistration.js")></script>
+    <script type="text/javascript" src=@Url.Content("~/Scripts/Pages/LoginRegister.js")></script>
         @RenderSection("JavaScript", false)
-
-        @Html.Action("Index", "Session");
 
     @*</div>*@
 

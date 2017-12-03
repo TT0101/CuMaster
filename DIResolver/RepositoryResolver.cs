@@ -19,6 +19,7 @@ namespace DIResolver.Data
             Bind(typeof(CuMaster.Data.RepositoryInterfaces.IConversionTrackerRepository)).To(typeof(CuMaster.Data.Repositories.ConversionTrackerRepository));
             Bind(typeof(CuMaster.Data.RepositoryInterfaces.IAllowedCurrencyRepository)).To(typeof(CuMaster.Data.Repositories.AllowedCurrencyRepository));
             Bind(typeof(CuMaster.Data.RepositoryInterfaces.IEmailAlertRepository)).To(typeof(CuMaster.Data.Repositories.EmailAlertRepository));
+            Bind(typeof(CuMaster.Data.RepositoryInterfaces.IUserRepository)).To(typeof(CuMaster.Data.Repositories.UserRepository));
         }
        
     }

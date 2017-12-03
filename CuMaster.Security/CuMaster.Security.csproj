@@ -30,8 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,11 +51,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyMembershipProvider.cs" />
     <Compile Include="PasswordHash.cs" />
+    <Compile Include="PasswordRules.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SecurityManager.cs" />
+    <Compile Include="SecurityPrincipal.cs" />
     <Compile Include="SecurityUser.cs" />
     <Compile Include="StringEncryption.cs" />
+    <Compile Include="UserAuthEntity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessFramework\DataAccessFramework.csproj">
+      <Project>{f04d3cc0-e1b4-472b-aa96-2b7dfbe52499}</Project>
+      <Name>DataAccessFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HelperFramework\HelperFramework.csproj">
+      <Project>{77B29A12-9EDC-4C06-8DD1-16B94BE22F55}</Project>
+      <Name>HelperFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

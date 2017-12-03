@@ -1,4 +1,5 @@
-﻿using CuMaster.BusinessLibrary.ViewModels;
+﻿using CuMaster.BusinessLibrary.Classes.Session;
+using CuMaster.BusinessLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace CuMaster.Controllers.ConversionCalculator
         // GET: ConversionCalculator
         public ActionResult Index()
         {
-            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary();
+            Session session = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+           
+            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(session);
             CurrencyConversionViewModel ccvModel = ccLib.GetCurrencyConversion();
 
             return View("ConversionCalculator", ccvModel);
@@ -21,7 +24,9 @@ namespace CuMaster.Controllers.ConversionCalculator
         [HttpPost]
         public JsonResult CurrencyChanged(CurrencyConversionViewModel res)
         {
-            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(res, false);
+            Session session = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+
+            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(session, res, false);
             ModelState.Clear();
             return Json(ccLib.GetCurrencyConversion(), JsonRequestBehavior.AllowGet);
         }
@@ -29,21 +34,25 @@ namespace CuMaster.Controllers.ConversionCalculator
         [HttpPost]
         public JsonResult FromValueChanged(CurrencyConversionViewModel res)
         {
-            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(res, false);
+            Session session = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+
+            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(session, res, false);
             return Json(ccLib.GetCurrencyConversion(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult ToValueChanged(CurrencyConversionViewModel res)
         {
-            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(res, true);
+            Session session = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+
+            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(session, res, true);
             return Json(ccLib.GetCurrencyConversion(), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult ResetToDefault(CurrencyConversionViewModel res)
         {
-            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary();
+            BusinessLibrary.Library.CurrencyConversionLibrary ccLib = new BusinessLibrary.Library.CurrencyConversionLibrary(Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current));
             CurrencyConversionViewModel ccvModel = ccLib.GetCurrencyConversion();
 
             return Json(ccLib.GetCurrencyConversion(), JsonRequestBehavior.AllowGet);

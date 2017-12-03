@@ -74,7 +74,7 @@ namespace CuMaster.UpdateCurrencyRates
             {
                 rateList.AddRange(r);
             }
-
+            //Debug.WriteLine("rates done for " + source.ToString());
             return rateList;
         }
 
@@ -91,7 +91,7 @@ namespace CuMaster.UpdateCurrencyRates
                    // Debug.WriteLineIf((acr.CurrencyCdFrom == "BTC"), acr.CurrencyPairID);
                     rateList.Add(acr);
              }//);
-
+            //Debug.WriteLine("got past currency pairs");
             return rateList;
         }
 
@@ -109,10 +109,10 @@ namespace CuMaster.UpdateCurrencyRates
                         usdOnly.Add(new CurrencySource { CurrencyCd = "USD", SourceFrom = "LAYER", SourceTo = "LAYER", Active = true });
                         rates.AddRange(CreateCurrencyPairsForSourceListAsync(sourceList, usdOnly, source).Result); //build all the pairs for usd that are in the database and add
                     }
-
+                    //Debug.WriteLine("calling currencylayer");
                     Data.APIHandlers.CurrencyLayerAPIHandler clAPI = new Data.APIHandlers.CurrencyLayerAPIHandler();
                     List<Data.Entities.BasicRateEntity> clRates = clAPI.GetUSDCurrencyRates();
-
+                    //Debug.WriteLine("have rates?:" + clRates.Any());
                     foreach (Data.Entities.BasicRateEntity clr in clRates)
                     {
                         if (clr.CurrencyFrom != null)
@@ -131,7 +131,7 @@ namespace CuMaster.UpdateCurrencyRates
                         CalculateOppositePairsAndAddToList(ref rates);
                     }
 
-                    // Debug.WriteLine("Done currencylayer");
+                   // Debug.WriteLine("Done currencylayer");
                 }
                 else if (source == Sources.Cryptonator)
                 {
@@ -140,7 +140,7 @@ namespace CuMaster.UpdateCurrencyRates
                     string baseRate = (rates.Any(r => r.CurrencyCdFrom == "BTC")) ? "BTC" : rates.FirstOrDefault(r => r.Rate == -1).CurrencyCdFrom;
                    
                      IEnumerable<APICurrencyRates> nextBaseRates = rates.Where(r => r.CurrencyCdFrom == baseRate);
-
+                    //Debug.WriteLine("got base rates to call: " + nextBaseRates.Any());
                            // while (.Any()) //while pairs in the queue
                      for(int i = 0; i < nextBaseRates.Count();i++)
                      {
@@ -148,7 +148,7 @@ namespace CuMaster.UpdateCurrencyRates
                                 //call api handler
                                 Data.APIHandlers.CryptonatorAPIHandler crAPI = new Data.APIHandlers.CryptonatorAPIHandler();
                                 BasicRateEntity clr = crAPI.GetRateForCurrency(pair.CurrencyPairID);
-                     //           Debug.WriteLine("rate retrieved");
+                                Debug.WriteLine("rate retrieved");
                                 //we got something back
                                 if (clr.CurrencyFrom != null)
                                 {
@@ -167,7 +167,7 @@ namespace CuMaster.UpdateCurrencyRates
                      CalculateCrossRates(ref rates, baseRate);
                      CalculateOppositePairsAndAddToList(ref rates); //this should also keep calls down, doing this here.
            
-                    //Debug.WriteLine("Done crypto");
+                   //Debug.WriteLine("Done crypto");
 
                 }
                 else if (source == Sources.Yahoo)
@@ -257,7 +257,7 @@ namespace CuMaster.UpdateCurrencyRates
                         {
                             take = (rCount - position);
                         }
-                        // Debug.WriteLine(position);
+                         //Debug.WriteLine(position);
                         CurrencyRatesTableTypeCollection ttParam = new CurrencyRatesTableTypeCollection();
                         ttParam.AddRange(ratesToSave.Skip(position).Take(take));
                         position = position + take;

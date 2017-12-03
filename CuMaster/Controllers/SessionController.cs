@@ -15,14 +15,15 @@ namespace CuMaster.Controllers
         }
 
         /// <summary>
-        /// this needs to execute periodically.
+        /// this needs to execute periodically.  also, how to get this info and execute this before everything else loads??
         /// </summary>
         /// <param name="loc"></param>
         [HttpPost]
         public void CreateSession(BusinessLibrary.UIRequestClasses.UserLocationRequest loc)
         {
-            string sessionID = Helpers.AuthenticationHelper.CreateSessionCookie(System.Web.HttpContext.Current, 120);
-            Helpers.AuthenticationHelper.CreateSession(System.Web.HttpContext.Current, sessionID, loc.Coords, loc.IP);
+            //string sessionID = Helpers.AuthenticationHelper.CreateSessionCookie(System.Web.HttpContext.Current, 120);
+            //Helpers.AuthenticationHelper.CreateSession(System.Web.HttpContext.Current, sessionID, loc.Coords, loc.IP);
+            Helpers.AuthenticationHelper.RebuildSessionForLocationFound(System.Web.HttpContext.Current, loc.Coords, loc.IP);
         }
     }
 }

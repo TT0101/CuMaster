@@ -81,6 +81,8 @@
     <Compile Include="Entities\CurrencyEntity.cs" />
     <Compile Include="Entities\CurrencyRateEntity.cs" />
     <Compile Include="Entities\EmailAlertEntity.cs" />
+    <Compile Include="Entities\UserAuthEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="MockRepositories\CountryRepository.cs" />
     <Compile Include="MockRepositories\CurrencyRateRepository.cs" />
     <Compile Include="MockRepositories\CurrencyRepository.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Repositories\CurrencyRepository.cs" />
     <Compile Include="Repositories\EmailAlertRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAllowedCurrencyRepository.cs" />
     <Compile Include="RepositoryInterfaces\IConversionTrackerRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICountryRepository.cs" />
@@ -101,8 +104,13 @@
     <Compile Include="RepositoryInterfaces\ICurrencyRateRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICurrencyRepository.cs" />
     <Compile Include="RepositoryInterfaces\IEmailAlertRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CuMaster.Security\CuMaster.Security.csproj">
+      <Project>{d496f2b1-6015-46b2-989f-8a2af7429fc8}</Project>
+      <Name>CuMaster.Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccessFramework\DataAccessFramework.csproj">
       <Project>{f04d3cc0-e1b4-472b-aa96-2b7dfbe52499}</Project>
       <Name>DataAccessFramework</Name>

@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using CuMaster.BusinessLibrary.ViewModels;
 using Ninject;
+using CuMaster.BusinessLibrary.Classes.Session;
+using System.Web;
+using CuMaster.Security;
 
 namespace CuMaster.BusinessLibrary.Library
 {
@@ -12,9 +15,14 @@ namespace CuMaster.BusinessLibrary.Library
     {
         public CurrencyLibrary Currencies { get; set; }
         private string SessionID { get; set; }
-        public EmailAlertLibrary()
+        private string DefaultCurrencyFrom { get; set; }
+        private string DefaultCurrencyTo { get; set; }
+
+        public EmailAlertLibrary(HttpContext context, Session session)
         {
-            this.SessionID = "FFFFFF"; //get from cookie later, also lets you get defaults
+            this.SessionID = (context.User.Identity.IsAuthenticated) ? context.User.Identity.Name : session.SessionID;
+            this.DefaultCurrencyFrom = session.Defaults.DefaultCurrencyFrom;
+            this.DefaultCurrencyTo = session.Defaults.DefaultCurrencyTo;
         }
 
         public ViewModels.EmailAlertViewModel GetInitalSettings()
@@ -24,8 +32,8 @@ namespace CuMaster.BusinessLibrary.Library
             Models.EmailAlertModel newAlert = new Models.EmailAlertModel();
 
             //get user settings
-            newAlert.CurrencyFrom = "USD"; //get from defaults later
-            newAlert.CurrencyTo = "ISK"; 
+            newAlert.CurrencyFrom = this.DefaultCurrencyFrom;
+            newAlert.CurrencyTo = this.DefaultCurrencyTo;
 
             newAlert.PercentageChange = 0;
             newAlert.TimeToSend = DateTime.Now.TimeOfDay.Add(new TimeSpan(1, 0, 0));

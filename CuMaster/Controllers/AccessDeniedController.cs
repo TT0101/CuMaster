@@ -7,12 +7,13 @@ using System.Web.Mvc;
 
 namespace CuMaster.Controllers
 {
-    public class HomeController : Controller
+    public class AccessDeniedController : Controller
     {
-        // GET: Home
+        // GET: AccessDenied
         public ActionResult Index()
         {
-                return View();
+
+            return View("~/Views/Error/AccessDenied.cshtml");
         }
     }
 }

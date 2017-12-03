@@ -6,28 +6,35 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Http;
 using CuMaster.BusinessLibrary.ViewModels;
+using CuMaster.BusinessLibrary.Classes.Session;
 
 namespace CuMaster.Controllers.ConversionCalculator
 {
     public class ConversionTrackerController : Controller
     {
+        private Session currentSession;
+        
         // GET: ConversionTracker
         public ActionResult Index()
         {
+            //this.currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
             return View("~/Views/ConversionCalculator/ConversionTracker.cshtml");
         }
 
         [HttpPost]
         public JsonResult GetTrackerEntries(DataTableParams dtParams)
         {
-            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary();
+            Session currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary(System.Web.HttpContext.Current, currentSession);
             return Json(ctLib.GetTrackerListForUser(dtParams).EntryListDataTable, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
         public JsonResult SaveNewTrackerEntry(ConversionTrackerViewModel tvm)
         {
-            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary();
+            Session currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+
+            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary(System.Web.HttpContext.Current, currentSession);
             try
             {
                 ctLib.SaveNewEntry(tvm);
@@ -42,8 +49,8 @@ namespace CuMaster.Controllers.ConversionCalculator
         [HttpPost]
         public JsonResult SaveAutoUpdateChange(BusinessLibrary.UIRequestClasses.TrackerUpdateRequest entryRowObject)
         {
-
-            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary();
+            Session currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary(System.Web.HttpContext.Current, currentSession);
             try
             {
                 ctLib.SaveAutoUpdateChange(entryRowObject.entryID);
@@ -59,7 +66,8 @@ namespace CuMaster.Controllers.ConversionCalculator
         [HttpPost]
         public JsonResult DeleteEntry(BusinessLibrary.UIRequestClasses.TrackerUpdateRequest entryRowObject)
         {
-            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary();
+            Session currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary(System.Web.HttpContext.Current, currentSession);
             try
             {
                 ctLib.DeleteEntry(entryRowObject.entryID);
@@ -74,7 +82,8 @@ namespace CuMaster.Controllers.ConversionCalculator
         [HttpPost]
         public JsonResult DeleteAllEntries()
         {
-            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary();
+            Session currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+            BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary(System.Web.HttpContext.Current, currentSession);
             try
             {
                 ctLib.DeleteAllEntriesForUser();

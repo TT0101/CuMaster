@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using CuMaster.BusinessLibrary.ViewModels;
 using CuMaster.Data.Entities;
 using CuMaster.BusinessLibrary.Models;
+using CuMaster.BusinessLibrary.Classes.Session;
+using System.Web;
+using CuMaster.Security;
 
 namespace CuMaster.BusinessLibrary.Library
 {
@@ -15,10 +18,12 @@ namespace CuMaster.BusinessLibrary.Library
     {
         private string SessionID { get; set; }
         private bool DefaultAutoUpdate { get; set; }
-        public CurrencyConversionTrackerLibrary()
+
+
+        public CurrencyConversionTrackerLibrary(HttpContext context, Session session)
         {
-            this.SessionID = "FFFFFF"; //get this from session object later
-            this.DefaultAutoUpdate = true; //this comes from user defaults later
+            this.SessionID = (context.User.Identity.IsAuthenticated) ? context.User.Identity.Name : session.SessionID;
+            this.DefaultAutoUpdate = session.Defaults.AutoUpdateTrackerRates; 
         }
 
         public ViewModels.ConversionTrackerListViewModel GetTrackerListForUser(DataTableParams dtParams)

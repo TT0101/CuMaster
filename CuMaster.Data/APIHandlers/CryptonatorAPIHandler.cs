@@ -61,7 +61,9 @@ namespace CuMaster.Data.APIHandlers
             catch (Exception ex)
             {
                 //log
-                Debug.WriteLine("Error: " + ex.Message + ", URL: " + urlReq);
+                //Debug.WriteLine("Error: " + ex.Message + ", URL: " + urlReq);
+                string errorLogPath = @"C:\UpdateRateBatch\ErrorLog.txt";
+                File.AppendAllText(errorLogPath, Environment.NewLine + ex.Message + Environment.NewLine + ex.StackTrace);
             }
 
             return bre;

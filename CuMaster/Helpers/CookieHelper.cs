@@ -15,6 +15,9 @@ namespace CuMaster.Helpers
 
         public static string DecryptCookieValue(HttpCookie cookie, string phrase)
         {
+            if (cookie == null)
+                return "";
+
             return StringEncryption.Decrypt(cookie.Value, phrase);
         }
 

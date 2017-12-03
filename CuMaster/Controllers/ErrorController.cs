@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CuMaster.BusinessLibrary.Classes.Session;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace CuMaster.Controllers
 
         public ActionResult Error(int statusCode, Exception ex)
         {
+
             Response.StatusCode = statusCode;
             Models.ErrorModel e;
             if (Session["_ERROR_"] != null && (Session["_ERROR_"].GetType() == typeof(Exception) || Session["_ERROR_"].GetType() == typeof(HttpException)))

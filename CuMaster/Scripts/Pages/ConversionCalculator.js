@@ -72,8 +72,8 @@ function OnCurrencyChange()
 function OnFromValueChange()
 {
     //add functionality so that if timestamp is an hour old, get from server instead....
-    var lastUpdated = moment($("#hLastUpdated").val());
-    if (moment().diff(lastUpdated, 'hours') >= 1)
+    var lastUpdated = moment.utc($("#hLastUpdated").val());
+    if (moment().utc().diff(lastUpdated, 'hours') >= 1)
     {
         var data = PopulateResponseObject();
         ajaxCallPost("ConversionCalculator", "FromValueChanged", data, loadNewValues);

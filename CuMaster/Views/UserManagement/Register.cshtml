@@ -1,0 +1,36 @@
+﻿@model CuMaster.BusinessLibrary.Models.RegisterModel
+<form id="frmRegister">
+    <div class="form-group">
+        <label for="txtRegisterUserName">User Name: </label>
+        <div class="input-group">
+            <input type="text" id="txtRegisterUserName" maxlength="75" class="form-control" />
+            <div class="input-group-addon addon-danger" id="userNameIsGood"><span class="fa fa-ban"></span></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtRegisterEmail">Email: </label>
+        <div class="input-group">
+            <input type="email" id="txtRegisterEmail" maxlength="500" required class="form-control" />
+            <div class="input-group-addon addon-danger" id="emailIsGood"><span class="fa fa-ban"></span></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtDisplayName">Display Name: </label>
+        <input type="text" id="txtDisplayName" maxlength="500" required class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="txtPasswordNew">Password: </label>
+        <div class="input-group"> 
+            <input type="password" id="txtPasswordNew" min="8" required class="form-control" />
+            <div class="input-group-addon addon-danger" id="passwordNewIsGood"><span class="fa fa-ban"></span></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtPasswordCheck">Retype Password: </label>
+        <div class="input-group">
+            <input type="password" id="txtPasswordCheck" min="8" required class="form-control" />
+            <div class="input-group-addon addon-danger" id="passwordCheckIsGood"><span class="fa fa-ban"></span></div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary" id="btnRegister">Create New Account</button>
+</form>

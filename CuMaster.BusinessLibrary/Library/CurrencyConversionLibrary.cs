@@ -6,6 +6,7 @@ using Ninject;
 using CuMaster.BusinessLibrary.Models;
 using System.Web.Mvc;
 using CuMaster.Data.Entities;
+using CuMaster.BusinessLibrary.Classes.Session;
 
 namespace CuMaster.BusinessLibrary.Library
 {
@@ -20,16 +21,11 @@ namespace CuMaster.BusinessLibrary.Library
         public decimal ValueTo { get; set; }
 
         public CurrencyLibrary Currencies { get; set; }
-        //public IEnumerable<CurrencyModel> Currencies { get; set; }
-        //private List<SelectListItem> CurrencySelect { get; set; }
 
-        //private SelectListGroup cryptoGroup = new SelectListGroup { Name = "Cryptocurrency" };
-        //private SelectListGroup countryGroup = new SelectListGroup { Name = "Country-Based Currency" };
 
-        public CurrencyConversionLibrary()
+        public CurrencyConversionLibrary(Classes.Session.Session currentSession)
         {
-            this.DefaultFromCurrency = "USD";
-            this.DefaultToCurrency = "ISK";
+            this.SetDefaults(currentSession);
             this.ValueFrom = 1;
 
             this.Currencies = new CurrencyLibrary();
@@ -38,13 +34,35 @@ namespace CuMaster.BusinessLibrary.Library
             
         }
 
-        public CurrencyConversionLibrary(string currencyFrom, string currencyTo) :this()
+        private void SetDefaults(Classes.Session.Session currentSession)
         {
+            if (currentSession != null)
+            {
+                SessionDefaults defaults = currentSession.GetSessionDefaultsForUser(currentSession.UserID);
+                this.DefaultFromCurrency = defaults.DefaultCurrencyFrom;
+                this.DefaultToCurrency = defaults.DefaultCurrencyTo;
+            }
+            else
+            {
+                this.DefaultToCurrency = "EUR";
+                this.DefaultFromCurrency = "USD";
+            }
+        }
+
+        public CurrencyConversionLibrary(Session currentSession, string currencyFrom, string currencyTo)
+        {
+            this.SetDefaults(currentSession);
+            this.ValueFrom = 1;
+
+            this.Currencies = new CurrencyLibrary();
             this.ChangeCurrencyRates(currencyFrom, currencyTo);
         }
 
-        public CurrencyConversionLibrary(CurrencyConversionViewModel ccModel, bool updateReversed) : this()
+        public CurrencyConversionLibrary(Session currentSession, CurrencyConversionViewModel ccModel, bool updateReversed)
         {
+            this.SetDefaults(currentSession);
+
+            this.Currencies = new CurrencyLibrary();
             this.ValueFrom = ccModel.ValueFrom;
             this.ValueTo = ccModel.ValueTo;
             this.ChangeCurrencyRates(ccModel.CurrencyFrom.ID, ccModel.CurrencyTo.ID, updateReversed);

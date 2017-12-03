@@ -23,7 +23,7 @@ namespace CuMaster.BusinessLibrary.Lookups
 
         public override IList<SelectListItem> GetSelectList()
         {
-            return base.Data.Select(c => new SelectListItem { Value = c.Code, Text = c.Name }).ToList();
+            return this.RefreshData().Select(c => new SelectListItem { Value = c.Code, Text = c.Name }).ToList();
         }
 
         protected override IEnumerable<CountryModel> RefreshData()
