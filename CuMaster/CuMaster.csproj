@@ -509,10 +509,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AccessDenied\" />
-    <Folder Include="Views\APITesting\" />
-    <Folder Include="Views\EmailAlertRegistration\" />
-    <Folder Include="Views\UserDashboard\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CuMaster.BusinessLibrary\CuMaster.BusinessLibrary.csproj">

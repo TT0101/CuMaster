@@ -10,27 +10,28 @@ namespace CuMaster.Security
 {
     public class MyMembershipProvider : MembershipProvider
     {
-        public override bool EnablePasswordRetrieval => throw new NotImplementedException();
 
-        public override bool EnablePasswordReset => throw new NotImplementedException();
+        public override bool EnablePasswordReset { get; }
 
-        public override bool RequiresQuestionAndAnswer => throw new NotImplementedException();
+        public override bool RequiresQuestionAndAnswer { get; }
 
-        public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override string ApplicationName { get; set;  }
 
-        public override int MaxInvalidPasswordAttempts => throw new NotImplementedException();
+        public override int MaxInvalidPasswordAttempts { get; }
 
-        public override int PasswordAttemptWindow => throw new NotImplementedException();
+        public override int PasswordAttemptWindow { get; }
 
-        public override bool RequiresUniqueEmail => throw new NotImplementedException();
+        public override bool RequiresUniqueEmail { get; }
 
-        public override MembershipPasswordFormat PasswordFormat => throw new NotImplementedException();
+        public override MembershipPasswordFormat PasswordFormat { get; }
 
-        public override int MinRequiredPasswordLength => throw new NotImplementedException();
+        public override int MinRequiredPasswordLength { get; }
 
-        public override int MinRequiredNonAlphanumericCharacters => throw new NotImplementedException();
+        public override int MinRequiredNonAlphanumericCharacters { get; }
 
-        public override string PasswordStrengthRegularExpression => throw new NotImplementedException();
+        public override string PasswordStrengthRegularExpression { get; }
+
+        public override bool EnablePasswordRetrieval { get; }
 
         public override bool ValidateUser(string username, string password)
         {
