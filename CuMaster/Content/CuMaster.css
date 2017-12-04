@@ -46,4 +46,7 @@ body{padding-bottom: 70px;}
     background-color: #f2dede;
 }
 
-
+.navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus
+{
+    color: #c5d0df;
+}

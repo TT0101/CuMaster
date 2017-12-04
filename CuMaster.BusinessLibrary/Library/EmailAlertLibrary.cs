@@ -13,25 +13,25 @@ namespace CuMaster.BusinessLibrary.Library
 {
     public class EmailAlertLibrary
     {
-        public CurrencyLibrary Currencies { get; set; }
         private string SessionID { get; set; }
         private string DefaultCurrencyFrom { get; set; }
         private string DefaultCurrencyTo { get; set; }
+        private string DefaultEmail { get; set; }
 
         public EmailAlertLibrary(HttpContext context, Session session)
         {
             this.SessionID = (context.User.Identity.IsAuthenticated) ? context.User.Identity.Name : session.SessionID;
             this.DefaultCurrencyFrom = session.Defaults.DefaultCurrencyFrom;
             this.DefaultCurrencyTo = session.Defaults.DefaultCurrencyTo;
+            this.DefaultEmail = session.Defaults.Email;
         }
 
         public ViewModels.EmailAlertViewModel GetInitalSettings()
         {
-            this.Currencies = new Library.CurrencyLibrary();
-
             Models.EmailAlertModel newAlert = new Models.EmailAlertModel();
 
             //get user settings
+            newAlert.Email = this.DefaultEmail;
             newAlert.CurrencyFrom = this.DefaultCurrencyFrom;
             newAlert.CurrencyTo = this.DefaultCurrencyTo;
 
@@ -41,7 +41,19 @@ namespace CuMaster.BusinessLibrary.Library
             return GetEmailAlert(newAlert);
         }
 
-       
+        public ViewModels.EmailAlertViewModel GetForExistingAlert(int alertID)
+        {
+            var eaRes = DIResolver.Data.NinjectConfig.GetKernal().Get<Data.RepositoryInterfaces.IEmailAlertRepository>();
+            Data.Entities.EmailAlertEntity alert = eaRes.GetAlert(alertID);
+            return GetEmailAlert(new Models.EmailAlertModel
+            {
+                Email = alert.Email,
+                CurrencyFrom = alert.CurrencyFrom,
+                CurrencyTo = alert.CurrencyTo,
+                PercentageChange = alert.Threshold,
+                TimeToSend = alert.TimeToSend,
+            }, true);
+        }
 
         public void SaveEmailAlert(EmailAlertViewModel emailAlert)
         {
@@ -51,6 +63,8 @@ namespace CuMaster.BusinessLibrary.Library
                 CurrencyFrom = emailAlert.CurrencyFrom,
                 CurrencyTo = emailAlert.CurrencyTo,
                 Email = emailAlert.Email,
+                Threshold = emailAlert.PercentageChange,
+                TimeToSend = emailAlert.TimeToSend,
                 SessionID = this.SessionID
             });
         }
@@ -61,24 +75,27 @@ namespace CuMaster.BusinessLibrary.Library
             eaRes.DeleteAllForEmail(email);
         }
 
-        public ViewModels.EmailAlertViewModel GetEmailAlert(Models.EmailAlertModel eam)
+        public ViewModels.EmailAlertViewModel GetEmailAlert(Models.EmailAlertModel eam, bool isForEdit = false)
         {
+            CurrencyLibrary cl = new CurrencyLibrary();
             return new ViewModels.EmailAlertViewModel
             {
-                Currencies = this.Currencies.CurrencyFromSelect,
-                CurrenciesTo = this.Currencies.GetAllowedCurrenciesSelect(eam.CurrencyFrom),
+                Currencies = cl.CurrencyFromSelect,
+                CurrenciesTo = cl.GetAllowedCurrenciesSelect(eam.CurrencyFrom),
                 Email = eam.Email,
                 CurrencyFrom = eam.CurrencyFrom,
                 CurrencyTo = eam.CurrencyTo,
                 PercentageChange = eam.PercentageChange,
-                TimeToSend = eam.TimeToSend
+                TimeToSend = eam.TimeToSend,
+                IsForEdit = isForEdit
             };
         }
 
         public ViewModels.EmailAlertViewModel GetEmailAlert(EmailAlertViewModel emailAlert)
         {
+            CurrencyLibrary cl = new CurrencyLibrary();
             EmailAlertViewModel updatedAlert = emailAlert;
-            updatedAlert.CurrenciesTo = this.Currencies.GetAllowedCurrenciesSelect(emailAlert.CurrencyFrom);
+            updatedAlert.CurrenciesTo = cl.GetAllowedCurrenciesSelect(emailAlert.CurrencyFrom);
             return updatedAlert;
         }
     }

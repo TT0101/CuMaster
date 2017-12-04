@@ -33,6 +33,20 @@ function ajaxCallPost(controller, callFunction, data, onSuccess)
 
 }
 
+function ajaxCallPostAction(controller, callFunction, data, onSuccess)
+{
+    $.ajax(
+        {
+            dataType: "html",
+            type: "POST",
+            data: data,
+            url: siteRoot + "/" + controller + "/" + callFunction,
+            success: onSuccess,
+            failure: onError
+        });
+
+}
+
 function ajaxCallGet(controller, callFunction, data, onSuccess)
 {
     if (location === null)
@@ -210,6 +224,11 @@ function roundCurrencyTo(isCrypto)
 function convertToLocalTime(date)
 {
     return moment.utc(date).local().format('L LT');
+}
+
+function convertToLocalTimeOnly(datetime)
+{
+    return moment.utc(datetime).local().format('LT');
 }
 
 

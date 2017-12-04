@@ -43,13 +43,13 @@ namespace CuMaster.Controllers
         }
 
        
-        [HttpPost]
-        public JsonResult LogoffUser()
+        public ActionResult LogOffUser()
         {
             Security.SecurityManager.Logoff(System.Web.HttpContext.Current.Response);
             Helpers.AuthenticationHelper.RebuildSessionForUserLogOff(System.Web.HttpContext.Current);
-            
-            return Json(new { StatusKey = "GOOD" }, JsonRequestBehavior.AllowGet);
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+            //return Json(new { StatusKey = "GOOD" }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

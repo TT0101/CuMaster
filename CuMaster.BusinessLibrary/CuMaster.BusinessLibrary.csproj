@@ -62,6 +62,7 @@
     <Compile Include="Library\CurrencyConversionTrackerLibrary.cs" />
     <Compile Include="Library\CurrencyLibrary.cs" />
     <Compile Include="Library\EmailAlertLibrary.cs" />
+    <Compile Include="Library\ManageEmailAlertLibrary.cs" />
     <Compile Include="Library\UserRegistrationLibrary.cs" />
     <Compile Include="Library\UserSelfAdministrationLibrary.cs" />
     <Compile Include="Lookups\AllowedConversionsLookup.cs" />
@@ -85,6 +86,8 @@
     <Compile Include="ViewModels\ConversionTrackerViewModel.cs" />
     <Compile Include="ViewModels\CurrencyConversionViewModel.cs" />
     <Compile Include="ViewModels\CurrencyViewModel.cs" />
+    <Compile Include="ViewModels\EmailAlertListViewModel.cs" />
+    <Compile Include="ViewModels\EmailAlertRecordViewModel.cs" />
     <Compile Include="ViewModels\EmailAlertViewModel.cs" />
     <Compile Include="ViewModels\UserDashboardViewModel.cs" />
   </ItemGroup>

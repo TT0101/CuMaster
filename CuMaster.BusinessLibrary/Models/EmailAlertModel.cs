@@ -14,10 +14,8 @@ namespace CuMaster.BusinessLibrary.Models
 
         public string CurrencyTo { get; set; }
 
-        public decimal PercentageChange { get; set; }
+        public decimal? PercentageChange { get; set; }
 
-        public TimeSpan TimeToSend { get; set; }
-
-        public string FrequencyToSend { get; set; }
+        public TimeSpan? TimeToSend { get; set; }
     }
 }

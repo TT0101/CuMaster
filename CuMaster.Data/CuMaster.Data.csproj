@@ -81,6 +81,7 @@
     <Compile Include="Entities\CurrencyEntity.cs" />
     <Compile Include="Entities\CurrencyRateEntity.cs" />
     <Compile Include="Entities\EmailAlertEntity.cs" />
+    <Compile Include="Entities\EmailAlertRecordEntity.cs" />
     <Compile Include="Entities\UserAuthEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="MockRepositories\CountryRepository.cs" />

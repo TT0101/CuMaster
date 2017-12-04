@@ -449,6 +449,7 @@
     <Content Include="Scripts\Pages\CuMasterCommon.js" />
     <Content Include="Scripts\Pages\EmailAlertRegistration.js" />
     <Content Include="Scripts\Pages\LoginRegister.js" />
+    <Content Include="Scripts\Pages\ManageEmailAlerts.js" />
     <Content Include="Scripts\Pages\Session.js" />
     <Content Include="Scripts\Pages\UserDashboard.js" />
     <Content Include="Scripts\ValidationOverride.js" />
@@ -464,6 +465,7 @@
     <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\ConversionCalculator\ConversionCalculatorController.cs" />
     <Compile Include="Controllers\ConversionCalculator\ConversionTrackerController.cs" />
+    <Compile Include="Controllers\UserManagement\EmailAlertEditController.cs" />
     <Compile Include="Controllers\EmailAlerts\EmailAlertRegistrationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -471,6 +473,7 @@
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Controllers\Testing\APITestingController.cs" />
     <Compile Include="Controllers\UserManagement\LoginRegisterController.cs" />
+    <Compile Include="Controllers\UserManagement\ManageEmailAlertsController.cs" />
     <Compile Include="Controllers\UserManagement\RegisterController.cs" />
     <Compile Include="Controllers\UserManagement\UserDashboardController.cs" />
     <Compile Include="Global.asax.cs">
@@ -500,6 +503,8 @@
     <Content Include="Views\UserManagement\Register.cshtml" />
     <Content Include="Views\UserManagement\UserDashboard.cshtml" />
     <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\UserManagement\ManageEmailAlerts.cshtml" />
+    <Content Include="Views\UserManagement\EmailAlertEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -509,6 +514,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\EmailAlertEdit\" />
+    <Folder Include="Views\ManageEmailAlerts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CuMaster.BusinessLibrary\CuMaster.BusinessLibrary.csproj">

@@ -1,5 +1,11 @@
 ﻿$(document).ready(function ()
 {
+    initOnEmailAlertLoad();
+    
+});
+
+function initOnEmailAlertLoad()
+{
     $("#btnThreshold").on('click', function ()
     {
         $("#alertOptionThreshold").collapse('show');
@@ -14,6 +20,7 @@
 
     });
 
+    if($("#txt"))
     $("#btnThreshold").click();
 
     $("#txtEmail").keyup(function ()
@@ -28,6 +35,19 @@
         }
     });
 
+    //execute this once on load if that field was prepopulated
+    if ($("#txtEmail").val() != "")
+    {
+        if (!$("#txtEmail")[0].checkValidity() || $("#txtEmail").val() == "" || !$("#txtEmail").valid())
+        {
+            $("#btnDeleteAlerts").addClass('disabled');
+        }
+        else
+        {
+            $("#btnDeleteAlerts").removeClass('disabled');
+        }
+    }
+
     $("#btnDeleteAlerts").click(function ()
     {
         deleteAlerts();
@@ -39,8 +59,7 @@
     });
 
     $.validator.unobtrusive.parse($("#emailAlertForm"));
-    
-});
+}
 
 function CreateDataViewObject()
 {
@@ -89,6 +108,10 @@ function onAlertSave(response)
     else if(response.StatusKey == "SUCCESS")
     {
         showEmailUpdateSuccessMessage();
+        if ($("#alertTable").length)
+        {
+            $("#alertTable").dataTable().draw();
+        }
     }
 }
 

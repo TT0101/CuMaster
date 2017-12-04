@@ -12,6 +12,7 @@ namespace CuMaster.BusinessLibrary.Classes.Session
         public string DefaultCurrencyTo { get; set; }
         public string DefaultCountry { get; set; }
         public bool AutoUpdateTrackerRates { get; set; }
+        public string Email { get; internal set; }
 
         public SessionDefaults()
         {
@@ -26,6 +27,7 @@ namespace CuMaster.BusinessLibrary.Classes.Session
                 this.DefaultCurrencyTo = locationDefaults.DefaultCurrencyTo;
                 this.DefaultCountry = locationDefaults.DefaultCountry;
                 this.AutoUpdateTrackerRates = true;
+                this.Email = "";
             }
             else
             {
@@ -33,6 +35,7 @@ namespace CuMaster.BusinessLibrary.Classes.Session
                 this.DefaultCurrencyTo = user.DefaultCurrencyTo ?? locationDefaults.DefaultCurrencyTo;
                 this.DefaultCountry = user.DefaultCountry ?? locationDefaults.DefaultCountry;
                 this.AutoUpdateTrackerRates = user.AutoUpdateEntries;
+                this.Email = user.Email;
             }
         }
     }

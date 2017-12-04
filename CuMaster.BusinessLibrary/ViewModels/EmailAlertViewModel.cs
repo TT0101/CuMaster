@@ -23,13 +23,17 @@ namespace CuMaster.BusinessLibrary.ViewModels
         public string CurrencyTo { get; set; }
 
         [RegularExpression("([0-9]+[.,]{1}[0-9]+)", ErrorMessage = "Please enter a valid number")]
-        public decimal PercentageChange { get; set; }
+        public decimal? PercentageChange { get; set; }
         
         [DataType(DataType.Time)]
-        public TimeSpan TimeToSend { get; set; }
+        public TimeSpan? TimeToSend { get; set; }
+
+        public double DifferenceFromUTC { get; set; } //plan here: need to get this from client side on save, will add get logic to convert from given timetosend to utc
 
         public IEnumerable<SelectListItem> Currencies { get; set; }
         public IEnumerable<SelectListItem> CurrenciesTo { get; set; }
+
+        public bool IsForEdit { get; set; }
 
         public EmailAlertViewModel()
         {

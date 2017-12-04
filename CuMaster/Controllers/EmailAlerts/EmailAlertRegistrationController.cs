@@ -19,7 +19,7 @@ namespace CuMaster.Controllers.EmailAlerts
 
             return View("~/Views/EmailAlerts/EmailAlertRegistration.cshtml", eal.GetInitalSettings());
         }
-
+    
         public ActionResult OnCurrencyFromChange(BusinessLibrary.ViewModels.EmailAlertViewModel emailAlert)
         {
             Session session = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);

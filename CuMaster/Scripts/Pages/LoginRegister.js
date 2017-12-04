@@ -49,6 +49,14 @@ $(document).ready(function ()
             changeStatusSymbol("passwordCheckIsGood", false, "Passwords must match");
         }
     });
+
+    $("#txtPassword", "#txtUserName").keypress(function (e)
+    {
+        if (e.which == 13)
+        {
+            loginUser();
+        }
+    });
 });
 
 function passwordsMatch()
