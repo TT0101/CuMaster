@@ -22,8 +22,12 @@ namespace CuMaster.BusinessLibrary.Library
 
         public bool IsEmailTaken(string email)
         {
-            var res = DIResolver.Data.NinjectConfig.GetKernal().Get<CuMaster.Data.RepositoryInterfaces.IUserRepository>();
-            return res.CheckEmail(email);
+            if (email.Contains("@") && email.Split('@')[1].Contains("."))
+            {
+                var res = DIResolver.Data.NinjectConfig.GetKernal().Get<CuMaster.Data.RepositoryInterfaces.IUserRepository>();
+                return res.CheckEmail(email);
+            }
+            return true;
         }
 
         public bool DoesPasswordMeetRequirements(string password, string userName)
