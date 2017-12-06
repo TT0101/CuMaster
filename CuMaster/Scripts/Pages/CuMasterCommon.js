@@ -221,6 +221,15 @@ function roundCurrencyTo(isCrypto)
         return 2;
 }
 
+
+function roundCurrencyToInverse(isCrypto)
+{
+    if (isCrypto == true || isCrypto == "true" || isCrypto == "True")
+        return 9;
+    else
+        return 4;
+}
+
 function convertToLocalTime(date)
 {
     return moment.utc(date).local().format('L LT');
@@ -302,4 +311,27 @@ function initValiation(form, rules)
         },
         rules: rules
     });
+}
+
+function createBasicChartArray(data, yLabel)
+{
+    return createBasicChartArrayFull(data, yLabel, 'x');
+}
+
+function createBasicChartArrayFull(data, yLabel, xLabel)
+{
+    var dataArray = [[]];
+    var rowArray = [xLabel, yLabel];
+    var counter = 0;
+    dataArray[counter] = rowArray;
+    $.each(data, function (index)
+    {
+        counter = counter + 1;
+        rowArray = [];
+        rowArray[0] = index;
+        rowArray[1] = data[index];
+        dataArray[counter] = rowArray;
+    });
+
+    return dataArray;
 }

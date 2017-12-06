@@ -145,7 +145,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\c3.css" />
-    <Content Include="Content\c3.min.css" />
     <Content Include="Content\CuMaster.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
@@ -321,27 +320,24 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\c3.js" />
+    <Content Include="Scripts\c3.min.js" />
     <Content Include="Scripts\cldr.js" />
     <Content Include="Scripts\cldr\event.js" />
     <Content Include="Scripts\cldr\supplemental.js" />
     <Content Include="Scripts\cldr\unresolved.js" />
-    <Content Include="Scripts\d3\d3.js" />
-    <Content Include="Scripts\d3\d3.min.js" />
-    <Content Include="Scripts\d3\README.md" />
-    <Content Include="Scripts\d3\LICENSE" />
-    <Content Include="Scripts\d3\CHANGES.md" />
-    <Content Include="Scripts\d3\API.md" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\CuMaster - Web Deploy.pubxml" />
+    <Content Include="Scripts\d3\d3.js" />
+    <Content Include="Scripts\d3\d3.min.js" />
+    <Content Include="Scripts\d3\LICENSE" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\c3.js" />
-    <Content Include="Scripts\c3.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap4.js" />
@@ -450,6 +446,9 @@
     <Content Include="Scripts\Pages\EmailAlertRegistration.js" />
     <Content Include="Scripts\Pages\LoginRegister.js" />
     <Content Include="Scripts\Pages\ManageEmailAlerts.js" />
+    <Content Include="Scripts\Pages\RateChart.js" />
+    <Content Include="Scripts\Pages\RateList.js" />
+    <Content Include="Scripts\Pages\RateTrends.js" />
     <Content Include="Scripts\Pages\Session.js" />
     <Content Include="Scripts\Pages\UserDashboard.js" />
     <Content Include="Scripts\ValidationOverride.js" />
@@ -465,6 +464,9 @@
     <Compile Include="Controllers\AccessDeniedController.cs" />
     <Compile Include="Controllers\ConversionCalculator\ConversionCalculatorController.cs" />
     <Compile Include="Controllers\ConversionCalculator\ConversionTrackerController.cs" />
+    <Compile Include="Controllers\RateTrends\RateChartController.cs" />
+    <Compile Include="Controllers\RateTrends\RateListController.cs" />
+    <Compile Include="Controllers\RateTrends\RateTrendsController.cs" />
     <Compile Include="Controllers\UserManagement\EmailAlertEditController.cs" />
     <Compile Include="Controllers\EmailAlerts\EmailAlertRegistrationController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -505,6 +507,9 @@
     <Content Include="Views\Error\AccessDenied.cshtml" />
     <Content Include="Views\UserManagement\ManageEmailAlerts.cshtml" />
     <Content Include="Views\UserManagement\EmailAlertEdit.cshtml" />
+    <Content Include="Views\RateTrends\RateTrends.cshtml" />
+    <Content Include="Views\RateTrends\RateChart.cshtml" />
+    <Content Include="Views\RateTrends\RateList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -514,8 +519,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\EmailAlertEdit\" />
-    <Folder Include="Views\ManageEmailAlerts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CuMaster.BusinessLibrary\CuMaster.BusinessLibrary.csproj">

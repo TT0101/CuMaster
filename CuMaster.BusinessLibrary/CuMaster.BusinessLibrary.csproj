@@ -63,6 +63,7 @@
     <Compile Include="Library\CurrencyLibrary.cs" />
     <Compile Include="Library\EmailAlertLibrary.cs" />
     <Compile Include="Library\ManageEmailAlertLibrary.cs" />
+    <Compile Include="Library\RateTrendsLibrary.cs" />
     <Compile Include="Library\UserRegistrationLibrary.cs" />
     <Compile Include="Library\UserSelfAdministrationLibrary.cs" />
     <Compile Include="Lookups\AllowedConversionsLookup.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIRequestClasses\CheckPasswordRequest.cs" />
     <Compile Include="UIRequestClasses\LoginRequest.cs" />
+    <Compile Include="UIRequestClasses\RateChartDataRequest.cs" />
     <Compile Include="UIRequestClasses\TrackerUpdateRequest.cs" />
     <Compile Include="UIRequestClasses\UserLocationRequest.cs" />
     <Compile Include="ViewModels\ConversionTrackerListViewModel.cs" />
@@ -89,6 +91,8 @@
     <Compile Include="ViewModels\EmailAlertListViewModel.cs" />
     <Compile Include="ViewModels\EmailAlertRecordViewModel.cs" />
     <Compile Include="ViewModels\EmailAlertViewModel.cs" />
+    <Compile Include="ViewModels\RateListViewModel.cs" />
+    <Compile Include="ViewModels\RateTrendsViewModel.cs" />
     <Compile Include="ViewModels\UserDashboardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

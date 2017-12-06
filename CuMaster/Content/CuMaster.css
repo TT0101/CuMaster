@@ -50,3 +50,8 @@ body{padding-bottom: 70px;}
 {
     color: #c5d0df;
 }
+
+.datatables_length
+{
+    text-align:left;
+}

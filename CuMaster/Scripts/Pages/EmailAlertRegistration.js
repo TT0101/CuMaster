@@ -110,7 +110,7 @@ function onAlertSave(response)
         showEmailUpdateSuccessMessage();
         if ($("#alertTable").length)
         {
-            $("#alertTable").dataTable().draw();
+            $("#alertTable").DataTable().ajax.reload();
         }
     }
 }

@@ -15,7 +15,9 @@ namespace CuMaster.App_Start
                 "~/Content/bootstrap-theme-cumaster.css",
                 "~/Content/font-awesome.css",
                 "~/Content/CuMaster.css",
-                "~/Content/DataTables/css/jquery.dataTables.min.css"
+                //"~/Content/DataTables/css/jquery.dataTables.min.css"
+                 "~/Content/DataTables/css/dataTables.bootstrap.min.css",
+                 "~/Content/c3.min.css"
                 ));
 
 

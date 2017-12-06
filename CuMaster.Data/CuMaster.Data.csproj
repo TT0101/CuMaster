@@ -82,6 +82,7 @@
     <Compile Include="Entities\CurrencyRateEntity.cs" />
     <Compile Include="Entities\EmailAlertEntity.cs" />
     <Compile Include="Entities\EmailAlertRecordEntity.cs" />
+    <Compile Include="Entities\RateHistoryEntity.cs" />
     <Compile Include="Entities\UserAuthEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="MockRepositories\CountryRepository.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Repositories\CurrencyRateRepository.cs" />
     <Compile Include="Repositories\CurrencyRepository.cs" />
     <Compile Include="Repositories\EmailAlertRepository.cs" />
+    <Compile Include="Repositories\RateTrendsRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RepositoryInterfaces\IAllowedCurrencyRepository.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="RepositoryInterfaces\ICurrencyRateRepository.cs" />
     <Compile Include="RepositoryInterfaces\ICurrencyRepository.cs" />
     <Compile Include="RepositoryInterfaces\IEmailAlertRepository.cs" />
+    <Compile Include="RepositoryInterfaces\IRateTrendsRepository.cs" />
     <Compile Include="RepositoryInterfaces\IUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

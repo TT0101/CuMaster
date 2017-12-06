@@ -17,6 +17,9 @@
     <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src=@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")></script>
+    <script type="text/javascript" src=@Url.Content("~/Scripts/DataTables/dataTables.bootstrap.min.js")></script>
+    @*<script type="text/javascript" src=@Url.Content("~/Scripts/DataTables/dataTables.bootstrap4.min.js")></script>*@
     <script type="text/javascript" src="~/Scripts/modernizr-2.8.3.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate.globalize.min.js"></script>
@@ -38,19 +41,9 @@
             {
                 getIPAndCreateSession();
             }
-
-            //ajaxCallGet("Login", "UserIsLoggedIn", "{}", function (response)
-            //{
-            //    if (response.IsUserLoggedIn)
-            //    {
-            //        setupMenuForLogOn();
-            //    }
-            //    else
-            //    {
-            //        setupMenuForLogOff();
-            //    }
-            //});
         });
+
+       
     </script>
     @*<div class="wrapper">*@
         <header>
@@ -66,7 +59,7 @@
                     <ul class="nav navbar-nav" style="color:#eee;">
                         <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "Home")">Convert and Track Currency</a></li>
                         <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "EmailAlerts")" data-toggle="modal" data-target="#modalEmailAlert">Create an Email Alert</a></li>
-                        <li class="nav-item disabled"><a class="navbar-link" href="@Url.Action("Index", "RateTrends")">Rate Trends</a></li>
+                        <li class="nav-item"><a class="navbar-link" href="@Url.Action("Index", "RateTrends")">Rate Trends</a></li>
                         <li class="nav-item disabled"><a class="navbar-link" href="@Url.Action("Index", "BusinessFinder")">Find an Exchange</a></li>
                         <li class="nav-item disabled"><a class="navbar-link" href="@Url.Action("Index", "ExchangeCostCalculator")">Exchange Cost Calculator</a></li>
                         <li class="nav-item disabled"><a class="navbar-link" href="@Url.Action("Index", "Help")">Help</a></li>

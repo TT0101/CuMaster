@@ -30,7 +30,7 @@ function initTrackerTable()
                 { data: 'AmountTo', name:'AmountTo', title: 'New Amount', width: "100px" },
                 { data: 'CurrencyTo', name: 'CurrencyTo', title: 'Currency To', width: "150px" },
                 { data: 'LastUpdated', name: 'LastUpdated', title: 'Last Updated', width: "100px" },
-                { data: null, name: 'UpdateRate', title: 'New Rate Update?', width: '20px' },
+                { data: null, name: 'UpdateRate', title: 'Update?', width: '20px' },
                 {data: null, title: 'Delete', width: '20px'}
                 
             ],
@@ -81,13 +81,14 @@ function initTrackerTable()
         }
     );
 
+    $("#trackerTable_length").addClass("text-left");
     initOnRowClick();
 
 }
 
 function refeshTrackerDataTable()
 {
-    $("#trackerTable").dataTable().draw();
+    $("#trackerTable").DataTable().ajax.reload();
 }
 
 function initOnRowClick()
@@ -168,7 +169,7 @@ function showChangeSuccessMessage(response)
         //}
         //table.fnUpdate(data, rowID, undefined, false);
 
-        $("#trackerTable").DataTable().draw(); //refresh table on this??
+        $("#trackerTable").DataTable().ajax.reload(); //refresh table on this??
 
         showUpdateSuccessMessage();
 

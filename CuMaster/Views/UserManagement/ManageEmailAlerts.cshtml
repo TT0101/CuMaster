@@ -29,8 +29,10 @@
             <button class='btn btn-primary' onclick='deleteAllAlerts();'><span class='glyphicon glyphicon-trash'></span>&nbsp;Delete All</button>
         </div>
         <br /><br />
-        <table id="alertTable" class="dataTable"></table>
-    </div>
+        <div class="col-md-12">
+            <table id="alertTable" class="dataTable table table-condensed" cellspacing="0"></table>
+        </div>
+   </div>
 </div>
 
 <div id="emailAlertEditContainer">
@@ -40,7 +42,7 @@
 
     @section JavaScript
     {
-        <script type="text/javascript" src=@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")></script>
+        @*<script type="text/javascript" src=@Url.Content("~/Scripts/DataTables/jquery.dataTables.min.js")></script>*@
         <script type="text/javascript" src=@Url.Content("~/Scripts/moment.min.js")></script>
         <script type="text/javascript" src=@Url.Content("~/Scripts/Pages/ManageEmailAlerts.js")></script>
     }
