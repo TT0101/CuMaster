@@ -33,6 +33,8 @@ namespace CuMaster.Controllers.ConversionCalculator
         public JsonResult SaveNewTrackerEntry(ConversionTrackerViewModel tvm)
         {
             Session currentSession = Helpers.AuthenticationHelper.GetSession(System.Web.HttpContext.Current);
+            if (tvm.EntryName == null)
+                tvm.EntryName = "";
 
             BusinessLibrary.Library.CurrencyConversionTrackerLibrary ctLib = new BusinessLibrary.Library.CurrencyConversionTrackerLibrary(System.Web.HttpContext.Current, currentSession);
             try

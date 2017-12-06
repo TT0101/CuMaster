@@ -154,8 +154,11 @@ function loadNewValues(responseData)
 
 function saveConversion()
 {
-    var data = CreateTrackerEntryObject();
-    ajaxCallPost("ConversionTracker", "SaveNewTrackerEntry", data, onEntrySave);
+    //if ($("#txtEntryName").val() != "")
+    //{
+        var data = CreateTrackerEntryObject();
+        ajaxCallPost("ConversionTracker", "SaveNewTrackerEntry", data, onEntrySave);
+    //}
 }
 
 function CreateTrackerEntryObject()
