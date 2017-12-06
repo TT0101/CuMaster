@@ -234,7 +234,7 @@ function initRateList()
 
                 var dateUpdated = convertToLocalTime(data.DateUpdatedUTCStr);
                 $('td', row).eq(1).html("<span class='font-weight-bold'>" + data.CurrencyToName + " (" + data.CurrencyTo + ")" + "</span><br/><small class='text-muted'>" + dateUpdated + "</small>");
-                var rateMarkup = "<span>" + data.RateFowards.toFixed(roundCurrencyTo(data.IsToRateCrypto)) + "</span><br/><small class='text-muted'>" + data.RateInverse.toFixed(roundCurrencyToInverse(data.IsFromRateCrypto)) + "</small>";
+                var rateMarkup = "<span>" + data.RateFowards.toFixed(roundCurrencyTo(data.IsToRateCrypto)) + "</span><br/><small class='text-muted'>Inverse: " + data.RateInverse.toFixed(roundCurrencyToInverse(data.IsFromRateCrypto)) + "</small>";
                 $('td', row).eq(2).html(rateMarkup);
             },
             fnServerData: function (sSource, aoData, fnCallback)
