@@ -148,6 +148,8 @@ function loadNewValues(responseData)
     $("#dateLastUpdated").text(convertToLocalTime(responseData.CurrencyFromLastUpdatedUTCString));
     $("#currencyFromSymbol").html(responseData.CurrencyFrom.HTMLSymbol);
     $("#currencyToSymbol").html(responseData.CurrencyTo.HTMLSymbol);
+    $("#hFromRate").val(responseData.FromRateFull);
+    $("#hIsCrypto").val(responseData.CurrencyTo.IsCrypto);
 
     
 }
