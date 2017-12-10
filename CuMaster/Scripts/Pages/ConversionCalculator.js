@@ -14,7 +14,7 @@ $(document).ready(function ()
     {
         if (_activeTimer == null)
         {
-            _activeTimer = window.setTimeout(function () { OnFromValueChange(); _activeTimer = null }, 60);
+            _activeTimer = window.setTimeout(function () { OnFromValueChange(); _activeTimer = null }, 90);
         }
         
     });
@@ -23,7 +23,7 @@ $(document).ready(function ()
     {
         if (_activeTimerTo == null)
         {
-            _activeTimerTo = window.setTimeout(function () { OnToValueChange(); _activeTimerTo = null }, 60);
+            _activeTimerTo = window.setTimeout(function () { OnToValueChange(); _activeTimerTo = null }, 90);
         }
         
     });
